@@ -104,7 +104,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:2}
         وأعوذ بك من شر ما فيه، واكتب لي الخير فيما هو آتٍ
     </div>
 
-    <button id="previewBtn" class="preview-btn">✨ Preview Sequence</button>
+    <button id="previewBtn" class="preview-btn">Skip the count down</button>
 </div>
 
 <script>
@@ -162,7 +162,7 @@ function tick(){
     const h=Math.floor(diff/3600000)%24;
     const m=Math.floor(diff/60000)%60;
     const s=Math.floor(diff/1000)%60;
-    timer.textContent=`${d}d ${h}h ${m}m ${s}s`;
+    timer.textContent=`${d}days ${h}hours ${m}minutes ${s}seconds`;
 }
 tick();
 setInterval(tick,1000);
@@ -217,3 +217,4 @@ class Particle{
 
 </body>
 </html>
+

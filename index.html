@@ -2231,6 +2231,7 @@
         }
       }
 
+      // Show welcome modal (from ramadan2 working implementation)
       function showWelcomeModal() {
         const modal = document.getElementById("welcomeModal");
         setTimeout(() => {
@@ -2238,15 +2239,17 @@
         }, 500);
       }
 
+      // Close modal with animation (from ramadan2)
       function closeModal() {
         const modal = document.getElementById("welcomeModal");
         const modalContent = modal.querySelector(".welcome-modal");
 
-        modalContent.style.transform = "scale(0.8)";
+        modalContent.style.transform = "scale(0.8) translateY(50px)";
         modalContent.style.opacity = "0";
 
         setTimeout(() => {
           modal.classList.remove("active");
+          // Show cards with animation
           document.querySelectorAll(".card").forEach((card, index) => {
             setTimeout(() => {
               card.style.opacity = "1";

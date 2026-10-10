@@ -1,2171 +1,366 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تأملات رمضان - الحكمة اليومية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>A Special Message for You... 💖</title>
+    <!-- Tailwind CSS for utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary-gold: #D4AF37;
-            --deep-emerald: #0D3328;
-            --rich-teal: #1A5F4A;
-            --soft-cream: #F9F6F0;
-            --warm-gold: #C9A227;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+        .font-cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+        .font-sans {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Optimized soft romantic gradient background with hardware acceleration */
         body {
-            font-family: 'Noto Sans Arabic', 'Noto Naskh Arabic', sans-serif;
-            background: linear-gradient(135deg, #0D3328 0%, #1A3A2F 50%, #0F2E23 100%);
+            background: linear-gradient(135deg, #1f0813 0%, #3a0d25 40%, #5c1335 70%, #200511 100%);
             min-height: 100vh;
-            color: var(--soft-cream);
+            color: #fdf2f8;
             overflow-x: hidden;
-            line-height: 1.8;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .stars {
+        /* Hardware-accelerated Glassmorphism styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateZ(0);
+        }
+
+        /* Smooth fade-in utility to prevent text layout shifts */
+        .fade-in-text {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Optimized floating background hearts with will-change */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) scale(0.3) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .bg-heart {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             pointer-events: none;
             z-index: 0;
+            will-change: transform, opacity;
+            animation: floatUp linear infinite;
         }
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-            opacity: 0;
+        /* High performance confetti keyframes */
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) translateZ(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(720deg) translateZ(0);
+                opacity: 0;
+            }
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .modal-overlay {
+        .confetti {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .welcome-modal {
-            background: linear-gradient(145deg, rgba(26, 95, 74, 0.95), rgba(13, 51, 40, 0.98));
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            max-width: 700px;
-            width: 90%;
-            text-align: center;
-            transform: scale(0.8);
-            transition: transform 0.6s ease;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-overlay.active .welcome-modal {
-            transform: scale(1);
-        }
-
-        .modal-decoration {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .crescent-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            animation: float 3s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .welcome-title {
-            font-family: 'Amiri', serif;
-            font-size: 2.8rem;
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-        }
-
-        .welcome-text {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: rgba(249, 246, 240, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        .enter-btn {
-            background: linear-gradient(135deg, var(--primary-gold), var(--warm-gold));
-            color: var(--deep-emerald);
-            border: none;
-            padding: 1rem 3rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans Arabic', sans-serif;
-            position: relative;
-            z-index: 10;
-        }
-
-        .enter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            padding: 3rem 0;
-            animation: fadeInDown 1s ease;
-        }
-
-        .ramadan-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-family: 'Amiri', serif;
-            font-size: 3.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .date-display {
-            font-size: 1.2rem;
-            color: rgba(249, 246, 240, 0.8);
-            margin-top: 1rem;
-        }
-
-        .navigation-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--primary-gold);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans Arabic', sans-serif;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            background: rgba(212, 175, 55, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .day-indicator {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
-            border: 1px solid var(--primary-gold);
-            padding: 1rem 2rem;
-            border-radius: 16px;
-            text-align: center;
-            min-width: 200px;
-        }
-
-        .day-label {
-            font-size: 0.85rem;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.25rem;
-        }
-
-        .day-number {
-            font-family: 'Amiri', serif;
-            font-size: 2rem;
-            color: var(--soft-cream);
-            font-weight: 700;
-        }
-
-        .current-day-badge {
-            background: var(--primary-gold);
-            color: var(--deep-emerald);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-            display: inline-block;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease backwards;
-            opacity: 0;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-        .card:nth-child(6) { animation-delay: 0.6s; }
-        .card:nth-child(7) { animation-delay: 0.7s; }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--warm-gold));
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .card-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--primary-gold);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .card-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--soft-cream);
-        }
-
-        .card-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(249, 246, 240, 0.85);
-        }
-
-        .arabic-text {
-            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
-            font-size: 1.8rem;
-            text-align: center;
-            direction: rtl;
-            margin: 1.5rem 0;
-            color: var(--primary-gold);
-            line-height: 2.4;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .reference {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--glass-border);
-            font-size: 0.9rem;
-            color: var(--primary-gold);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .explanation {
-            margin-top: 1rem;
-            padding: 1.2rem;
-            background: rgba(212, 175, 55, 0.08);
-            border-radius: 12px;
-            border-right: 3px solid var(--primary-gold);
-            font-size: 1.05rem;
-            line-height: 1.9;
-        }
-
-        .story-box {
-            background: rgba(26, 95, 74, 0.3);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            font-style: normal;
-            line-height: 2;
-        }
-
-        .story-box strong {
-            color: var(--primary-gold);
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .adhkar-item {
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 0.8rem 0;
-            border-right: 3px solid var(--primary-gold);
-        }
-
-        .adhkar-item .reward {
-            color: var(--primary-gold);
-            font-weight: 600;
-            margin-top: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .battle-box {
-            background: rgba(139, 0, 0, 0.2);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .battle-box .battle-name {
-            color: var(--primary-gold);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .battle-box .battle-date {
-            color: rgba(249, 246, 240, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .day-counter {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-family: 'Amiri', serif;
-            color: var(--primary-gold);
-            z-index: 100;
-            animation: slideIn 1s ease 0.5s backwards;
-            font-size: 1.1rem;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(-100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .back-today-btn {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: linear-gradient(135deg, var(--primary-gold), var(--warm-gold));
-            color: var(--deep-emerald);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Noto Sans Arabic', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .back-today-btn.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-today-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .welcome-title { font-size: 1.8rem; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .day-counter { bottom: 1rem; left: 1rem; }
-            .arabic-text { font-size: 1.4rem; }
-        }
-
-        .particle {
-            position: absolute;
             pointer-events: none;
-            animation: particle-float 1s ease-out forwards;
-            color: var(--primary-gold);
-            font-size: 1.2rem;
+            z-index: 100;
+            will-change: transform, opacity;
+            animation: confettiFall 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        @keyframes particle-float {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        /* Smooth interactive transforms */
+        .evasive-btn {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+            will-change: transform;
         }
     </style>
 </head>
-<body>
-    <div class="stars" id="stars"></div>
+<body class="font-sans flex items-center justify-center min-h-screen p-4 sm:p-6 overflow-y-auto">
 
-    <button class="back-today-btn" id="backTodayBtn" onclick="goToToday()">
-        العودة إلى اليوم الحالي ←
-    </button>
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <div class="modal-overlay" id="welcomeModal">
-        <div class="welcome-modal">
-            <div class="modal-decoration"></div>
-            <div class="crescent-icon">🌙</div>
-            <h2 class="welcome-title">رمضان مبارك</h2>
-            <p class="welcome-text">
-                مرحباً بك في رفيقك اليومي للشهر الكريم. كل يوم يقدم لك آية قرآنية عميقة مع تفسيرها، 
-                دعاءً مستجاباً، حديثاً نبوياً ملهماً، قصةً من حياة الأنبياء والصحابة، 
-                معلومات عن غزوات المسلمين، وأذكاراً وأعمالاً تضاعف الحسنات وتمحو السيئات. 
-                جعلنا الله وإياكم من المقبولين.
+    <main class="relative z-10 w-full max-w-lg mx-auto text-center my-auto">
+        
+        <!-- ========================================== -->
+        <!-- SECTION 1: HERO / INVITATION COVER        -->
+        <!-- ========================================== -->
+        <div id="hero-section" class="glass-card rounded-3xl p-8 sm:p-10 transition-all duration-700 ease-out transform scale-100 opacity-100">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-pink-500/20 text-pink-300 text-4xl mb-6 shadow-lg shadow-pink-500/10 border border-pink-400/30 animate-pulse">
+                💌
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">
+                Hey there, <span class="font-cursive text-4xl sm:text-5xl text-pink-300 block mt-1">Special Someone</span>
+            </h1>
+            
+            <p class="text-pink-100/80 text-base sm:text-lg mb-8 font-light leading-relaxed">
+                I've been holding onto a few feelings for a while now, and today I finally found the courage to share them with you.
             </p>
-            <button class="enter-btn" id="enterBtn">دخول الموقع</button>
-        </div>
-    </div>
 
-    <div class="container">
-        <header>
-            <div class="ramadan-badge">
-                <span>✦</span>
-                <span>رمضان المبارك 1446 هـ</span>
-                <span>✦</span>
-            </div>
-            <h1>التأملات اليومية</h1>
-            <div class="date-display" id="currentDate"></div>
-        </header>
-
-        <div class="navigation-controls">
-            <button class="nav-btn" id="prevBtn" onclick="previousDay()">
-                → اليوم السابق
-            </button>
-            
-            <div class="day-indicator">
-                <div class="day-label">يوم رمضان</div>
-                <div class="day-number" id="displayDay">1</div>
-                <div class="current-day-badge" id="currentBadge" style="display: none;">اليوم الحالي</div>
-            </div>
-            
-            <button class="nav-btn" id="nextBtn" onclick="nextDay()">
-                اليوم التالي ←
+            <button id="open-btn" onclick="openEnvelope()" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-rose-600 rounded-full shadow-lg shadow-rose-500/30 hover:shadow-rose-500/50 hover:scale-105 active:scale-95 transition-all duration-300">
+                <span>Open My Heart</span>
+                <span class="ml-2 group-hover:translate-x-1 transition-transform">✨</span>
             </button>
         </div>
 
-        <div class="cards-grid">
-            <!-- Quranic Verse Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">📖</div>
-                <div class="card-label">آية اليوم</div>
-                <h3 class="card-title" id="verseTitle">جاري التحميل...</h3>
-                <div class="arabic-text" id="verseArabic"></div>
-                <div class="card-content" id="verseTranslation"></div>
-                <div class="explanation" id="verseExplanation"></div>
-                <div class="reference" id="verseReference"></div>
+        <!-- ========================================== -->
+        <!-- SECTION 2: ENVELOPE & LOVE LETTER MODAL   -->
+        <!-- ========================================== -->
+        <div id="letter-section" class="hidden glass-card rounded-3xl p-6 sm:p-10 transition-all duration-700 ease-out transform scale-95 opacity-0">
+            
+            <!-- Letter Header -->
+            <div class="text-left border-b border-pink-500/20 pb-4 mb-6 flex justify-between items-end">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-pink-300 font-semibold">A Secret Letter</span>
+                    <!-- CUSTOMIZABLE: Date -->
+                    <p class="text-xs text-pink-200/60 mt-0.5">October 10, 2026</p>
+                </div>
+                <div class="text-2xl">🌹</div>
             </div>
 
-            <!-- Dua Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">🤲</div>
-                <div class="card-label">الدعاء اليومي</div>
-                <h3 class="card-title" id="duaTitle">دعاء مستجاب</h3>
-                <div class="arabic-text" id="duaArabic"></div>
-                <div class="explanation" id="duaExplanation"></div>
-                <div class="reference" id="duaReference"></div>
+            <!-- Letter Body Container (Optimized clean text paragraphs) -->
+            <div class="text-left space-y-4 text-pink-50 text-base sm:text-lg leading-relaxed font-light min-h-[160px]">
+                <p id="para-1" class="fade-in-text">From the moment you entered my life, everything felt a little brighter, warmer, and more beautiful.</p>
+                <p id="para-2" class="fade-in-text">Your smile effortlessly turns my worst days around, and your kindness inspires me more than you'll ever know.</p>
+                <p id="para-3" class="fade-in-text">I couldn't hold this in any longer... I really love you.</p>
             </div>
 
-            <!-- Hadith Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">🕊️</div>
-                <div class="card-label">حديث اليوم</div>
-                <h3 class="card-title">حكمة نبوية</h3>
-                <div class="card-content" id="hadithText"></div>
-                <div class="reference" id="hadithReference"></div>
-            </div>
+            <!-- Interactive Decision Area -->
+            <div id="question-area" class="mt-8 pt-6 border-t border-pink-500/20 opacity-0 transform translate-y-4 transition-all duration-700 ease-out pointer-events-none">
+                <p class="text-xl sm:text-2xl font-bold text-white mb-6 font-cursive">
+                    Will you give me the honor of being mine? 💖
+                </p>
 
-            <!-- Story Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">📜</div>
-                <div class="card-label">قصة اليوم</div>
-                <h3 class="card-title" id="storyTitle">من حياة السلف</h3>
-                <div class="story-box" id="storyContent"></div>
-            </div>
+                <div id="buttons-container" class="relative min-h-[100px] flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
+                    <!-- YES BUTTON -->
+                    <button id="yes-btn" onclick="acceptLove()" class="px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold text-lg rounded-full shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:scale-110 active:scale-95 transition-all duration-300 z-20">
+                        Yes! 💖
+                    </button>
 
-            <!-- Battles Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">⚔️</div>
-                <div class="card-label">غزوات المسلمين</div>
-                <h3 class="card-title" id="battleTitle">بطولة إسلامية</h3>
-                <div class="battle-box" id="battleContent"></div>
-            </div>
-
-            <!-- Adhkar Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">🌟</div>
-                <div class="card-label">أذكار وأعمال مضاعفة</div>
-                <h3 class="card-title">كنز اليوم</h3>
-                <div id="adhkarContent"></div>
-            </div>
-
-            <!-- Islamic Fact Card -->
-            <div class="card" onclick="createParticles(event)">
-                <div class="card-icon">💡</div>
-                <div class="card-label">كنوز الإسلام</div>
-                <h3 class="card-title">معلومة نادرة</h3>
-                <div class="card-content" id="factContent"></div>
+                    <!-- EVASIVE NO BUTTON (Optimized smooth translation without layout jumps) -->
+                    <button id="no-btn" onmouseover="dodgeButton()" onclick="dodgeButton()" class="evasive-btn px-8 py-3.5 bg-white/10 text-pink-200 font-medium text-lg rounded-full border border-pink-300/20 hover:bg-white/20 z-10">
+                        No 🙈
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="day-counter" id="dayCounter">
-        اليوم <span id="ramadanDay">1</span> من 30
-    </div>
+        <!-- ========================================== -->
+        <!-- SECTION 3: CELEBRATION SUCCESS SCREEN      -->
+        <!-- ========================================== -->
+        <div id="success-section" class="hidden glass-card rounded-3xl p-8 sm:p-12 transition-all duration-700 ease-out transform scale-90 opacity-0">
+            <div class="text-6xl mb-4 animate-bounce">🎉</div>
+            
+            <h2 class="text-4xl sm:text-5xl font-bold font-cursive text-pink-300 mb-4">
+                You Made Me The Happiest Person! 💖
+            </h2>
+            
+            <p class="text-pink-100/90 text-lg sm:text-xl mb-8 leading-relaxed font-light">
+                I promise to cherish every single moment with you, make you laugh every day, and fill your life with warmth and happiness.
+            </p>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-pink-400/20 mb-8 inline-block">
+                <p class="text-sm text-pink-200/80">
+                    📸 Take a screenshot of this moment and send it to me right away! 😉
+                </p>
+            </div>
+
+            <div>
+                <button onclick="restartExperience()" class="px-6 py-2.5 bg-white/10 text-pink-200 text-sm font-medium rounded-full border border-pink-300/20 hover:bg-white/20 transition-all">
+                    Replay Letter ✨
+                </button>
+            </div>
+        </div>
+
+    </main>
 
     <script>
-        const RAMADAN_START = new Date('2026-02-19');
-        let currentViewedDay = null;
+        /* ===================================================================
+           OPTIMIZED JAVASCRIPT LOGIC & 60FPS ANIMATIONS
+           =================================================================== */
+        let dodgeCount = 0;
+        let yesButtonScale = 1;
 
-        const ramadanContent = [
-            {
-                // Day 1
-                verse: {
-                    title: "مفتاح الرحمة",
-                    arabic: "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
-                    translation: "وإذا سألك عبادي عني فإني قريب أجيب دعوة الداع إذا دعان فليستجيبوا لي وليؤمنوا بي لعلهم يرشدون",
-                    explanation: "هذه الآية تبشر العبد أن الله قريب منه ويستجيب دعاءه، وتدعوه للإيمان والاستجابة لأوامر الله لينال الهداية والرشاد. في أول أيام رمضان، تذكرنا بأن باب الدعاء مفتوح وأن الله أقرب إلينا من حبل الوريد.",
-                    reference: "سورة البقرة (186)"
-                },
-                dua: {
-                    title: "دعاء استقبال رمضان",
-                    arabic: "اللَّهُمَّ أَعِنِّي عَلَى صِيَامِهِ وَقِيَامِهِ وَجَنِّبْنِي فِيهِ مِنْ حَفَرَاتِ الشَّيَاطِينِ وَأَجِرْنِي فِيهِ مِنَ النَّارِ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ",
-                    explanation: "هذا الدعاء يطلب فيه العبد من الله التوفيق لصيام الشهر وقيام ليله، والحماية من مكائد الشيطان، والنجاة من النار. يُستحب الدعاء به في أول أيام رمضان لاستقبال الشهر بالتوفيق والعصمة.",
-                    reference: "الدعاء المستجاب في رمضان"
-                },
-                hadith: {
-                    text: "إذا جاء رمضان فُتِّحَتْ أبواب الجنة، وغُلِّقَتْ أبواب النار، وصُفِّدَتِ الشياطين",
-                    reference: "صحيح البخاري 1899"
-                },
-                story: {
-                    title: "عمر بن الخطاب يتبع أبا بكر في الليل",
-                    content: "كان أبو بكر الصديق رضي الله عنه يخرج في الليل فيتصدق سراً على الفقراء. فلاحظ عمر بن الخطاب خروجه، فتبعه سراً ليعرف ما يفعل. رأى أبا بكر يحمل زاداً ويطعاماً ويذهب إلى حي من أحياء المدينة، فيدق باباً هنا وباباً هناك، فيترك الطعام وينصرف دون أن يراه أحد. في الصباح، قال عمر لأبي بكر: يا خليفة رسول الله، من كنت تزور البارحة؟ فابتسم أبو بكر وقال: يا عمر، كنت أزور إخواناً لنا في الله، نسيهم الناس ونسوا الناس، لكن الله لم ينسهم. تعلمنا أن الصدقة السرية أعظم أجراً، وأن خير الإنسان ما كان في السر لا في العلن."
-                },
-                battle: {
-                    title: "غزوة بدر الكبرى",
-                    date: "17 رمضان سنة 2 هـ",
-                    content: "كانت أول معركة كبرى في الإسلام، وسميت بيوم الفرقان لأن الله فرق بين الحق والباطل فيها. كان المسلمون 313 مقاتلاً فقط، وكان المشركون ألف مقاتل. وقف النبي ﷺ في العريش يدعو ربه: اللهم إن تهلك هذه العصابة لا تُعبَد في الأرض. فنصر الله المسلمين بنصر عظيم، وقتل من قتلى المشركين سبعون رجلاً، وأسر سبعون أيضاً. وكانت من أعظم المعارك في التاريخ الإسلامي، وأثبتت أن النصر ليس بعدد ولا عدة، بل بتوفيق الله ونصره."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص ثلاث مرات",
-                        reward: "تعدل بأجر قراءة القرآن كله، لأنها ثلث القرآن في التوحيد"
-                    },
-                    {
-                        text: "الصلاة على النبي محمد ﷺ عشر مرات",
-                        reward: "من صلى علي حين يصبح وحين يمسي أدركته شفاعتي يوم القيامة"
-                    },
-                    {
-                        text: "قول: سبحان الله وبحمده مئة مرة",
-                        reward: "من قالها مئة مرة غفرت له ذنوبه ولو كانت مثل زبد البحر"
-                    }
-                ],
-                fact: "كان الصحابي الجليل عثمان بن عفان رضي الله عنه يصوم النهار ويقوم الليل كاملاً، وكان إذا دخل في العشر الأواخر من رمضان يشد مئزره ويغلق بابه ويخرج من الدنيا إلى العبادة، وكان يُعرف بـ 'ذي النورين' لزواجه من ابنتي النبي ﷺ رقية ثم أم كلثوم."
-            },
-            {
-                // Day 2
-                verse: {
-                    title: "سر قبول الأعمال",
-                    arabic: "إِنَّمَا يَتَقَبَّلُ اللَّهُ مِنَ الْمُتَّقِينَ",
-                    translation: "إنما يتقبل الله من المتقين",
-                    explanation: "هذه الآية تبين أن قبول العمل ليس بحجمه الظاهر، بل بنية صاحبه وخشيته لله. المتقي هو الذي يجعل بينه وبين عقاب الله وقاية بأداء الفرائض واجتناب المحرمات. في رمضان، نسعى أن تكون أعمالنا مقبولة بإخلاص النية وتقوى الله.",
-                    reference: "سورة المائدة (27)"
-                },
-                dua: {
-                    title: "دعاء يوم الجمعة والصيام",
-                    arabic: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
-                    explanation: "هذا الدعاء هو الصلاة الإبراهيمية التي يُستحب قولها في التشهد الأخير من الصلاة، وفي يوم الجمعة، وبعد الأذان. في رمضان، تكون مضاعفة الأجر، وهي سبب لنيل شفاعة النبي ﷺ يوم القيامة.",
-                    reference: "صحيح البخاري 3370"
-                },
-                hadith: {
-                    text: "من صام رمضان إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 38"
-                },
-                story: {
-                    title: "عبد الله بن مسعود يتعلم من النبي ﷺ",
-                    content: "كان عبد الله بن مسعود رضي الله عنه رقيق الجسد، صغير القدمين، رث الثياب. قال له بعض الناس: لو تمنعت من قيام الليل فإنك ضعيف. فقال: أتأمرونني بترك قيام الليل؟! إني لأرجو من الله ما لا ترجون. ثم ذكر أنه كان يحرس النبي ﷺ في ليلة شديدة الظلمة والبرد، فجاء النبي ﷺ فقال: يا ابن مسعود، قم فصلِّ. فقال: يا رسول الله، وما لي وما لصلاي؟ فقال النبي ﷺ: ألا أبشرك بأفضل سورتين قرأت بهما؟ قل هو الله أحد والمعوذتين حين تمسي وحين تصبح ثلاث مرات تكفيك من كل شيء. تعلمنا أن العبد الفقير الضعيف قد يكون أعظم عبادة من الغني القوي، وأن أفضل الأعمال ليست كثرتها بل الإخلاص فيها."
-                },
-                battle: {
-                    title: "غزوة أحد",
-                    date: "7 شوال سنة 3 هـ",
-                    content: "كانت ثاني غزوة كبرى للمسلمين، وقعت في جبل أحد بالمدينة. كان المسلمون 700 مقاتل، والمشركون 3000 مقاتل. بدأت المعركة بنصر للمسلمين، لكن انشغل الرماة بالغنيمة فخالفوا أمر النبي ﷺ، فانقلبت الهزيمة على المسلمين. استشهد فيها 70 من الصحابة، منهم سيد الشهداء حمزة بن عبد المطالب. علمنا الله فيها أن النصر مرتبط بالطاعة، وأن الذنوب سبب للهزيمة."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة آية الكرسي بعد كل صلاة مكتوبة",
-                        reward: "من قالها لم يزله عن الجنة إلا الموت، وهي أعظم آية في القرآن"
-                    },
-                    {
-                        text: "قول: أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه",
-                        reward: "من قالها في اليوم مئة مرة كانت له عدل عتق رقبة، ومحيت عنه خطاياه وإن كانت مثل زبد البحر"
-                    },
-                    {
-                        text: "قراءة سورة الملك قبل النوم",
-                        reward: "إن سورة من القرآن ثلاثون آية شفعت لرجل حتى غُفِرَ له، وهي تبارك الذي بيده الملك"
-                    }
-                ],
-                fact: "كان الصحابي أبو الدرداء رضي الله عنه يقول: إني لأستغفر الله في اليوم سبعين مرة، وإني لأتوب إليه في اليوم أكثر من مئة مرة. وكان يقول: إن العبد ليذنب الذنب فيدخل الجنة به، وذلك أن يتوب منه فيكون سبباً لدخول الجنة."
-            },
-            {
-                // Day 3
-                verse: {
-                    title: "ليلة القدر",
-                    arabic: "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
-                    translation: "ليلة القدر خير من ألف شهر",
-                    explanation: "هذه الآية تبين فضل ليلة القدر العظيم، وهي ليلة مباركة في العشر الأواخر من رمضان. العمل فيها خير من عمل ثلاث وثمانين سنة. في رمضان، نسعى في العشر الأواخر لنيل هذا الفضل العظيم.",
-                    reference: "سورة القدر (3)"
-                },
-                dua: {
-                    title: "دعاء التوبة والاستقامة",
-                    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ تَوْبَةً نَصُوحًا وَأَعُوذُ بِكَ مِنَ الْمَعْصِيَةِ وَالْمَغْرَمِ وَالْمَأْثَمِ",
-                    explanation: "التوبة النصوح هي التوبة الخالصة التي تترك الذنب وتندم عليه وتعزم على عدم العودة. يطلب العبد في هذا الدعاء توبة صادقة تمحو ما مضى، ويستعيذ بالله من ثلاثة: المعصية التي تبعد عن رضوان الله، والمغرم وهو الدين الذي يشغل القلب، والمأثم وهو الذنب العظيم.",
-                    reference: "الأذكار للنووي"
-                },
-                hadith: {
-                    text: "كل عمل ابن آدم يُضاعَفُ، الحسنة بعشر أمثالها إلى سبعمائة ضعف. قال الله تعالى: إلا الصيام، فإنه لي وأنا أجزي به",
-                    reference: "صحيح مسلم 1151"
-                },
-                story: {
-                    title: "عمر بن عبد العزيز يعيد الأموال",
-                    content: "لما تولى عمر بن عبد العزيز الخلافة، وجد أن أموالاً كثيرة قد أخذها من سبقه من غير حق. فجمع أهل بيته وقال: إن هذه الأموال ليست لنا، إنما هي للمسلمين. فأخرج كل شيء حتى فرش البيت. وجاءته زوجته فاطمة بنت عبد الملك وهي ابنة الخليفة، فقال لها: اختاري بين الدنيا وبيني. فاختارته. فباع كل شيء ورده إلى بيت المال. وكان يقول: رأيت أجدادي يأخذون من بيت المال فجمعوا الدنيا، وأريد أن أرد إليه فأجمع الآخرة. مات رضي الله عنه ولم يترك شيئاً، وكفنه في ثوبين رثين. تعلمنا أن العدل أعلى من الملك، وأن الزهد في الدنيا هو طريق العزة في الآخرة."
-                },
-                battle: {
-                    title: "غزوة الخندق",
-                    date: "شوال سنة 5 هـ",
-                    content: "سميت أيضاً بغزوة الأحزاب، حيث اتحدت قبائل قريش والغطفان وغيرها على المدينة لإبادة المسلمين. كان عدد المشركين عشرة آلاف مقاتل، والمسلمون ثلاثة آلاف. أمر النبي ﷺ بحفر خندق حول المدينة للدفاع. استمرت المعركة شهراً تقريباً، وانتهت بفشل الأحزاب وانتصار المسلمين. ونزلت فيها سورة الأحزاب التي تمدح المؤمنين على صبرهم وثباتهم."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص والفلق والناس ثلاث مرات بعد صلاة الفجر والمغرب",
-                        reward: "تكفي من كل شيء، ومن قالها حين يمسي وحين يصبح ثلاث مرات كفته من كل شيء"
-                    },
-                    {
-                        text: "قول: لا إله إلا أنت سبحانك إني كنت من الظالمين",
-                        reward: "دعوة ذي النون إذ دعا وهو في بطن الحوت، فاستجاب الله له، ولا يدعو بها رجل مسلم في شيء قط إلا استجاب الله له"
-                    },
-                    {
-                        text: "التهليل (لا إله إلا الله) مئة مرة",
-                        reward: "أفضل الذكر لا إله إلا الله، ومن قالها مئة مرة كانت له عدل عتق عشر رقاب"
-                    }
-                ],
-                fact: "كان الإمام مالك بن أنس رحمه الله يقول: إني لأكره للرجل أن يموت وعليه صيام يوم واحد من رمضان. وكان يقول: من أفطر يوماً من رمضان بغير عذر فقد عصى الله ورسوله، ومن مات وعليه صيام رمضان فليفطر وليصم عنه وليه."
-            },
-            {
-                // Day 4
-                verse: {
-                    title: "سر النصر والتمكين",
-                    arabic: "وَمَا النَّصْرُ إِلَّا مِنْ عِنْدِ اللَّهِ الْعَزِيزِ الْحَكِيمِ",
-                    translation: "وما النصر إلا من عند الله العزيز الحكيم",
-                    explanation: "هذه الآية تعلمنا أن النصر الحقيقي ليس بكثرة العدد ولا بكثرة العتاد، بل بعون الله وتوفيقه. العزيز الذي لا يغلب، الحكيم في تدبيره. في رمضان، نتذكر أن نصرنا على شهواتنا وعلى الشيطان إنما هو بتوفيق من الله وحده.",
-                    reference: "سورة الأنفال (10)"
-                },
-                dua: {
-                    title: "دعاء يستجير به العبد",
-                    arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ سَمْعِي وَمِنْ شَرِّ بَصَرِي وَمِنْ شَرِّ لِسَانِي وَمِنْ شَرِّ قَلْبِي وَمِنْ شَرِّ مَنِيِّي",
-                    explanation: "هذا الدعاء يستعيذ فيه العبد من شر جوارحه الخمس: السمع بالاستماع إلى الحرام، والبصر بالنظر إلى المحرم، واللسان بالغيبة والكذب، والقلب بالشك والنفاق، والمنيّ بالحرام. يُستحب قوله في الصباح والمساء.",
-                    reference: "سنن النسائي 1206"
-                },
-                hadith: {
-                    text: "الصيام جُنَّةٌ، فلا يرفث ولا يجهل، وإن امْرُؤٌ قاتله أو شاتمه فليقل: إني صائم",
-                    reference: "صحيح البخاري 1894"
-                },
-                story: {
-                    title: "بلال بن رباح يؤذن على بيت المقدس",
-                    content: "لما فتح المسلمون بيت المقدس، أراد عمر بن الخطاب أن يصلي فيه، فسأل عن مكان الصلاة. فأشاروا له إلى مكان فصلى فيه. ثم قال: أين بلال؟ فأُتي به. فقال عمر: ائذن يا بلال. فتأخر بلال، فقال عمر: ائذن يا بلال. فتأخر. فقال عمر: ائذن يا بلال. فأذن. فلما قال: الله أكبر الله أكبر، خرج عمر ومن معه من أهل المدينة يبكون حتى أنهم ليجهلون ما يقولون، حتى إذا قال: أشهد أن لا إله إلا الله، قالوا: أشهد أن لا إله إلا الله. وكانوا يذكرون أيام رسول الله ﷺ. تعلمنا أن الأذان يحيي القلوب الميتة، وأن ذكر الله في المواطن العظيمة يذكرنا بأيام العزة الإسلامية."
-                },
-                battle: {
-                    title: "فتح مكة",
-                    date: "20 رمضان سنة 8 هـ",
-                    content: "كان فتحاً عظيماً دون قتال. دخل النبي ﷺ مكة بجيش عشرة آلاف مقاتل، وقد نصره الله على قريش بعد أن أخرجته منها. سجد النبي ﷺ شكراً لله، ثم قال: ما لكم أيها القوم؟ فقالوا: خيراً، أنت كريم وابن كريم. فقال: اذهبوا فأنتم الطلقاء. عفا النبي ﷺ عن من أخرجه وآذاه، فأسلم الناس أفواجاً. ودخل النبي ﷺ الكعبة فطهرها من الأصنام."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة السجدة والإنسان في صلاة الفجر يوم الجمعة",
-                        reward: "من قرأ بهما في ليلة الجمعة أدركته شفاعة النبي ﷺ، وفي النهار كذلك"
-                    },
-                    {
-                        text: "قول: سبحان الله العظيم وبحمده",
-                        reward: "دبيبها في الميزان أحب إلي مما طلعت عليه الشمس، تملأ ما بين السماوات والأرض"
-                    },
-                    {
-                        text: "الاستغفار في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا فيه من الدعاء فهو مأمون"
-                    }
-                ],
-                fact: "كان الصحابي سعد بن أبي وقاص رضي الله عنه يقول: إني لأعرف آية في كتاب الله ما عمل بها أحد قط إلا دخل الجنة. وهي قوله تعالى: وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ."
-            },
-            {
-                // Day 5
-                verse: {
-                    title: "مفتاح الرزق الحلال",
-                    arabic: "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ",
-                    translation: "ومن يتق الله يجعل له مخرجاً ويرزقه من حيث لا يحتسب",
-                    explanation: "هذه الآية بشرى عظيمة لمن اتقى الله في معاشه ومعيشته، أن الله يفتح له أبواب الرزق من حيث لا يدري، ويجعل له مخرجاً من كل ضيق. في رمضان، نتعلم أن التقوى ليست مانعاً من الرزق، بل هي سبب لأفضل الأرزاق وأطيبها.",
-                    reference: "سورة الطلاق (2-3)"
-                },
-                dua: {
-                    title: "دعاء سيد الاستغفار",
-                    arabic: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
-                    explanation: "هذا هو سيد الاستغفار، أفضل دعاء للتوبة والمغفرة. يجمع بين توحيد الربوبية والعبودية، والاعتراف بالنعمة والذنب، والطلب من الله وحده المغفرة. من قاله موقناً به حين يمسي ومات دخل الجنة، ومن قاله حين يصبح ومات دخل الجنة.",
-                    reference: "صحيح البخاري 6306"
-                },
-                hadith: {
-                    text: "للصائم فرحتان: فرحة عند فطره، وفرحة عند لقاء ربه",
-                    reference: "صحيح مسلم 1151"
-                },
-                story: {
-                    title: "ذو الكفل يقوم الليل كله",
-                    content: "كان في بني إسرائيل رجل يقال له ذو الكفل، وكان يصوم النهار ويقوم الليل، فلم يرقد ليلة قط. فأوحى الله إلى نبيه: أن اذهب إلى عبدي فقل له: إن كان يطلب الجنة فليرقد، وإن كان يطلب الدنيا فليرقد، وإن كان يطلب رضواني فليصنع ما يصنع. فذهب النبي إليه فقال له ذلك، فقال ذو الكفل: أما الجنة فنعمتها لا تبلى، وأما الدنيا فنعمتها لا تدوم، وأما رضوان الله فهو خير من الدنيا والآخرة. تعلمنا أن العبد الحقيقي هو الذي يختار رضوان ربه على كل شيء، وأن العبادة المستمرة هي علامة المحبة الصادقة لله."
-                },
-                battle: {
-                    title: "غزوة حنين",
-                    date: "10 شوال سنة 8 هـ",
-                    content: "وقعت بعد فتح مكة مباشرة، وكان المسلمون اثني عشر ألفاً، وكان المشركون من هوازن وغيرهم عشرين ألفاً. افتخر بعض المسلمون بكثرتهم فأنزل الله: يَوْمَ حُنَيْنٍ إِذْ أَعْجَبَتْكُمْ كَثْرَتُكُمْ فَلَمْ تُغْنِ عَنكُمْ شَيْئًا. ثم أنزل الله سكينته على المسلمين فانتصروا انتصاراً عظيماً، وغنموا غنائم كثيرة."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة آخر آيتين من سورة البقرة في الليل",
-                        reward: "من قرأ بهما في ليلة كفتاه، وهما من كنز تحت العرش"
-                    },
-                    {
-                        text: "قول: لا حول ولا قوة إلا بالله",
-                        reward: "كنز من كنوز الجنة، ومن قالها في اليوم مئة مرة كانت له عدل عتق عشر رقاب"
-                    },
-                    {
-                        text: "التسبيح في الركع والسجود",
-                        reward: "أما الركوع فعظموا فيه الرب، وأما السجود فاجتهدوا في الدعاء فهو مأمون"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأدعو في السجود دعوات لو أدعيت بها على جبل لذاب، أو على صخر لتفتت، أو على حديد لانقطع. وكان يقول: أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا فيه من الدعاء."
-            },
-            {
-                // Day 6
-                verse: {
-                    title: "سر الصبر والثبات",
-                    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا وَرَابِطُوا وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
-                    translation: "يا أيها الذين آمنوا اصبروا وصابروا ورابطوا واتقوا الله لعلكم تفلحون",
-                    explanation: "هذه الآية تضم أربع أوامر: الصبر على الطاعات، والمصابرة على ترك المعاصي، والرباط في الثغور وفي طاعة الله، والتقوى في جميع الأحوال. الفلاح الحقيقي هو الفوز بالجنة ونجاة من النار، وهو ثمرة هذه الأعمال في رمضان.",
-                    reference: "سورة آل عمران (200)"
-                },
-                dua: {
-                    title: "دعاء إذا ضاقت الدنيا",
-                    arabic: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
-                    explanation: "هذا الدعاء هو قول إبراهيم عليه السلام حين أُلقي في النار، فجعلها الله عليه برداً وسلاماً. وقاله النبي ﷺ حين قالوا: إن الناس قد جمعوا لكم فاخشوهم، فزادهم إيماناً وقالوا: حسبنا الله ونعم الوكيل. من قاله في الشدة والضيق فرج الله عنه.",
-                    reference: "سورة آل عمران (173)"
-                },
-                hadith: {
-                    text: "أفضل الصدقة صدقة في رمضان",
-                    reference: "سنن الترمذي 663"
-                },
-                story: {
-                    title: "الحسن البصري يبكي ليلة كاملة",
-                    content: "كان الحسن البصري رحمه الله إذا دخل في العشر الأواخر من رمضان، أغلق بابه وقطع عن نفسه كل شاغل، ولبس الملابس الخشنة، وشد المئزر، وأقبل على ربه بكليته. وكان يقول: يا ابن آدم، إنما أنت أيام، إذا ذهب يومك ذهب بعضك. وكان يبكي ليلة كاملة ولا يفتر، حتى يقال: لو شققتم قلبه لوجدتموه كالكرب الأسود من كثرة الخوف من الله. تعلمنا أن العلماء العاملين كانوا يحيون ليالي رمضان بالبكاء والخوف من الله، وأن الوقت أغلى ما نملك."
-                },
-                battle: {
-                    title: "غزوة تبوك",
-                    date: "رجب سنة 9 هـ",
-                    content: "كانت آخر غزوات النبي ﷺ، وسميت بغزوة العسرة لشدة الحر والجوع. كان الجيش ثلاثين ألف مقاتل، وهو أكبر جيش خرج في الإسلام. خرج النبي ﷺ بنفسه رغم شدة الحر. ونزلت فيها سورة التوبة التي توبخ المنافقين. لم يلق المسلمون قتالاً لأن الروم فروا من كثرة الجيش، لكنها كانت تجهيزاً للمستقبل."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الكهف يوم الجمعة",
-                        reward: "من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين"
-                    },
-                    {
-                        text: "الصلاة على النبي ﷺ بعد الأذان",
-                        reward: "من صلى علي عشراً صلى الله عليه عشراً، ومن صلى علي مئة صلى الله عليه مئة"
-                    },
-                    {
-                        text: "قول: أعوذ بعزة الله وقدرته من شر ما أجد وأحاذر",
-                        reward: "من قالها سبع مرات في دبر كل صلاة مكتوبة عصمه الله من الشيطان حتى يصلي المكتوبة الأخرى"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يختم القرآن في رمضان ستين ختمة، أي ختمتين في اليوم. وكان يقول: إذا مر رمضان ولم يغفر للعبد فماذا يرجو بعده؟"
-            },
-            {
-                // Day 7
-                verse: {
-                    title: "علاج القلوب المريضة",
-                    arabic: "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
-                    translation: "فاذكروني أذكركم واشكروا لي ولا تكفرون",
-                    explanation: "هذه الآية تضم وعداً ووعيداً: وعد بأن من ذكر الله في نفسه ولسانه وجوارحه ذكره الله في ملأ من الملائكة، ووعيد بأن من لم يشكر نعم الله فقد كفر بها. في رمضان، نتذكر أن الذكر هو حياة القلوب، والشكر هو سبب بقاء النعم وزيادتها.",
-                    reference: "سورة البقرة (152)"
-                },
-                dua: {
-                    title: "دعاء استفتاح القرآن",
-                    arabic: "اللَّهُمَّ ارْحَمْنِي بِتَرْكِ الْمَعَاصِي أَبَدًا مَا أَبْقَيْتَنِي، وَارْحَمْنِي أَنْ أَتَصَدَّقَ مِنْ كُلِّ مَالٍ تُعْطِينِي، وَارْحَمْنِي بِتَرْكِ مَنْ يَحِلُّ لِي مِنَ النِّسَاءِ",
-                    explanation: "هذا الدعاء يطلب فيه العبد من الله ثلاث رحمات: ترك المعاصي مدى الحياة، والصدقة من كل مال يأتيه، والعفة والطهارة. يُستحب الدعاء به عند استفتاح القرآن في رمضان.",
-                    reference: "الآداب الشرعية لابن مفلح"
-                },
-                hadith: {
-                    text: "من قام رمضان إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 37"
-                },
-                story: {
-                    title: "أبو بكر يشتري بلالاً ويعتقه",
-                    content: "كان بلال بن رباح رضي الله عنه عبداً مملوكاً عند أمية بن خلف، وكان يعذبه على إسلامه فيضعه في حجارة ملتهبة على صدره ويقول: لا إله إلا الله. فمر به أبو بكر الصديق فقال: ألا تتقي الله في هذا المسكين؟ فقال أمية: أنت الذي أفسدته فأنقذه. فقال أبو بكر: بخ، أبيعني إياه. فاشتراه بسبع أوقيات من الذهب، وأعتقه في اللحظة. فصار بلال مؤذن رسول الله ﷺ، وصار صوته يرن في السماء إلى يومنا هذا. تعلمنا أن إنقاذ المظلوم وإعانة المسلم أعظم الأعمال."
-                },
-                battle: {
-                    title: "سرية معت بن عسيس",
-                    date: "رمضان سنة 6 هـ",
-                    content: "بعث النبي ﷺ معت بن عسيس في سرية في رمضان، وكانوا صياماً. فلما أتوا الماء، قال معت: لا تفطروا اليوم حتى تفطروا على عدوكم. ففطروا على عدوهم من آخر النهار، فشكوا ذلك إلى النبي ﷺ، فقال: هم أصابوا الأجر مرتين: أجر الصيام وأجر الجهاد. وهذا دليل على جواز الإفطار في السفر للجهاد، لكنهم اختاروا الصيام فنالوا الأجر مضاعفاً."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص عشر مرات بعد صلاة الفجر",
-                        reward: "من قرأها عشر مرات بعد الفجر بنى الله له قصراً في الجنة"
-                    },
-                    {
-                        text: "قول: سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه ومداد كلماته",
-                        reward: "من قالها ثلاث مرات في دبر كل صلاة غفرت له ذنوبه وإن كانت مثل زبد البحر"
-                    },
-                    {
-                        text: "الدعاء بين الأذان والإقامة",
-                        reward: "الدعاء لا يرد بين الأذان والإقامة، فادعوا الله تبارك وتعالى"
-                    }
-                ],
-                fact: "كان الصحابي أبو ذر الغفاري رضي الله عنه يقول: إني لأحب الموت لقاء الله، وأحب الفقر لأن الله يفتقرني إلى الناس، وأحب المرض لأن الله يكفر بها خطاياي. وكان النبي ﷺ يقول فيه: ما أقل زاد الدنيا من أصحابي، وما أعقلهم أبا ذر."
-            },
-            {
-                // Day 8
-                verse: {
-                    title: "صفات عباد الرحمن",
-                    arabic: "وَعِبَادُ الرَّحْمَنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا",
-                    translation: "وعباد الرحمن الذين يمشون على الأرض هوناً وإذا خاطبهم الجاهلون قالوا سلاماً",
-                    explanation: "هذه الآية تصف أخلاق عباد الرحمن: التواضع في المشي، والحلم مع الجاهلين، والصبر على أذاهم. في رمضان، نتدرب على هذه الأخلاق حتى نكون من عباد الرحمن الذين يدخلون الجنة بغير حساب.",
-                    reference: "سورة الفرقان (63)"
-                },
-                dua: {
-                    title: "دعاء دخول المنزل",
-                    arabic: "بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا، ثُمَّ لِيُسَلِّمْ عَلَى أَهْلِهِ",
-                    explanation: "هذا الدعاء يُقال عند دخول المنزل، فيحفظ الله الداخل والخارج، ويحفظ أهل البيت. السلام على الأهل عند الدخول سنة نبوية، وهي سبب لبركة البيت واستقراره.",
-                    reference: "سنن أبي داود 5096"
-                },
-                hadith: {
-                    text: "من فطر صائماً كان له مثل أجره، غير أنه لا ينقص من أجر الصائم شيء",
-                    reference: "سنن الترمذي 807"
-                },
-                story: {
-                    title: "عثمان بن عفان يحفر بئر رومة بماله كله",
-                    content: "كان الناس يتعذرون من الماء في المدينة، وكان بئر رومة يملكه يهودي يبيع الماء للمسلمين بثمن باهظ. فجاء عثمان بن عفان رضي الله عنه إلى اليهودي ليشتري البئر، فرفض. ثم عرض عليه أن يشتري نصفه، فوافق. وجعل عثمان نصيبه مفتوحاً للمسلمين مجاناً، فلم يعد أحد يشتري من اليهودي، فاضطر أن يبيع نصيبه لعثمان. فتحرر البئر للمسلمين، وكان النبي ﷺ يقول: من حفر بئر رومة دخل الجنة. فدخلها عثمان بماله وجهده. تعلمنا أن الإنفاق في سبيل الله لا ينقص المال بل يزيده بركة، وأن خدمة المسلمين أعظم الأعمال."
-                },
-                battle: {
-                    title: "غزوة ذات الرقاع",
-                    date: "جمادى الأولى سنة 6 هـ",
-                    content: "خرج النبي ﷺ في هذه الغزوة لرد غيلة من غطفان. كان الجو شديد الحر، والمسلمون في ضيق شديد. وفيها نزل قوله تعالى: يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْرًا كَثِيرًا وَسَبِّحُوهُ بُكْرَةً وَأَصِيلًا هُوَ الَّذِي يُصَلِّي عَلَيْكُمْ وَمَلَائِكَتُهُ. وفيها أكل النبي ﷺ مع أصحابه من شاة مسمومة، فشكوا إلى النبي ﷺ، فقال: ارفعوا أيديكم فرفعوا، فقال: بسم الله، فماتت الشاة وهي في يدها."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة يس عند المحتضر",
-                        reward: "إنها القلب، اقرؤوها على موتاكم، تيسر لهم الخروج وتخفف عنهم"
-                    },
-                    {
-                        text: "قول: اللهم صل وسلم على نبينا محمد",
-                        reward: "من صلى علي في اليوم ألف مرة لم يمت حتى يبشر بالجنة"
-                    },
-                    {
-                        text: "التكبير من صلاة الفجر يوم عرفة إلى صلاة العصر آخر أيام التشريق",
-                        reward: "من كبر من الفجر يوم عرفة إلى العصر آخر أيام التشريق غفر له ذنب من قبل"
-                    }
-                ],
-                fact: "كان الإمام البخاري رحمه الله يقول: كنت في صباي ألعب بالصبيان، فإذا سمعت الأذان كنت أذهب إلى المسجد. وكان يقول: إني لأتمنى أن أكون كالشعرة في جنب المسلمين، لا أذكر ولا أُذكر."
-            },
-            {
-                // Day 9
-                verse: {
-                    title: "مفتاح الفرج",
-                    arabic: "أَمَّنْ يُجِيبُ الْمُضْطَرَّ إِذَا دَعَاهُ وَيَكْشِفُ السُّوءَ وَيَجْعَلُكُمْ خُلَفَاءَ الْأَرْضِ ۗ أَإِلَٰهٌ مَعَ اللَّهِ ۚ قَلِيلًا مَا تَذَكَّرُونَ",
-                    translation: "أمن يجيب المضطر إذا دعاه ويكشف السوء ويجعلكم خلفاء الأرض، أإله مع الله، قليلاً ما تذكرون",
-                    explanation: "هذه الآية تبين أن الله وحده يستجيب للمضطرين، ويكشف الكربات، ويجعل عباده خلفاء في الأرض. المضطر هو الذي انضطرته الحاجة إلى الدعاء بخضوع وتذلل. في رمضان، نتذكر أن الله قريب مجيب، وأن مع العسر يسراً.",
-                    reference: "سورة النمل (62)"
-                },
-                dua: {
-                    title: "دعاء الكرب والهم",
-                    arabic: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
-                    explanation: "هذا الدعاء هو دعاء ذي النون يونس عليه السلام حين دعا في بطن الحوت، فاستجاب الله له وفك كربته. قال النبي ﷺ: من دعا بهذا الدعاء في شيء من أمور الدنيا والآخرة استجاب الله له. يُستحب الإكثار منه في رمضان.",
-                    reference: "سنن الترمذي 3505"
-                },
-                hadith: {
-                    text: "إن للجنة باباً يقال له الريان، لا يدخل منه إلا الصائمون",
-                    reference: "صحيح البخاري 1896"
-                },
-                story: {
-                    title: "علي بن أبي طالب يتصدق بدرعه",
-                    content: "كان علي بن أبي طالب رضي الله عنه يعمل في إزالة التراب عن الآبار بيديه، وكان يأخذ أجراً على ذلك. فجاءه رجل فقال: يا علي، إني فقير وعندي عيال. فقال علي: اذهب إلى بيتي فخذ درعي فبعه وأنفق على عيالك. فذهب الرجل فباع الدرع بأربعمائة درهم، وجاء يعطيها لعلي. فقال علي: خذها أنت فأعطها لعيالك، واذهب بدرعي. فقال الرجل: يا أمير المؤمنين، أتعطيني الدرع والدراهم؟ قال: نعم، والله لأنفقن درهمي ودرهم الدرع في سبيل الله أحب إلي من أن أعتق رقبة. تعلمنا أن الإنفاق في سبيل الله لا ينظر إلى المقدار بل إلى النية، وأن العطاء بيد الإمام أعظم أجراً."
-                },
-                battle: {
-                    title: "سرية عبد الله بن أبي حذافة",
-                    date: "رمضان سنة 8 هـ",
-                    content: "بعث النبي ﷺ عبد الله بن أبي حذافة السهمي في سرية، وأمره أن يدخل بلاد قريش يخربها. فخرج في رمضان، وكانوا صياماً. فلما أتوا الماء، قال: من شاء فليفطر ومن شاء فليصم. فصام أكثرهم. فلقوا العدو، فقاتلوهم، ثم انصرفوا. وكان النبي ﷺ يبعث السرايا في رمضان للجهاد في سبيل الله، وكان الصحابة يصومون في السفر اختياراً."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الملك قبل النوم",
-                        reward: "إن سورة من القرآن ثلاثون آية شفعت لرجل حتى غُفِرَ له، وهي تبارك"
-                    },
-                    {
-                        text: "قول: اللهم أنت ربي لا إله إلا أنت، عليك توكلت، وأنت رب العرش العظيم",
-                        reward: "ما قالها عبد في شيء يؤذيه إلا فرج الله عنه"
-                    },
-                    {
-                        text: "الاستغفار في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا فيه من الدعاء"
-                    }
-                ],
-                fact: "كان الصحابي سلمان الفارسي رضي الله عنه يقول: إني لأعبد ربي بأربع خصال: إني أحسب حسابه، وأعمل لعمله، وأخاف سخطه، وأرجو ثوابه. وكان يقول: ليس منا من لم يحاسب نفسه في كل يوم."
-            },
-            {
-                // Day 10 - Middle of Ramadan
-                verse: {
-                    title: "منتصف رمضان والتوبة",
-                    arabic: "وَإِنِّي لَغَفَّارٌ لِمَنْ تَابَ وَآمَنَ وَعَمِلَ صَالِحًا ثُمَّ اهْتَدَىٰ",
-                    translation: "وإني لغفار لمن تاب وآمن وعمل صالحاً ثم اهتدى",
-                    explanation: "هذه الآية بشرى عظيمة للتائبين، أن الله غفار لمن تاب توبة نصوحاً، وآمن بالله ورسوله، وعمل صالحاً متبعاً السنة. في منتصف رمضان، يتذكر العبد أن نصف الشهر قد مضى، فيتوب إلى ربه قبل أن يفوته قطار المغفرة.",
-                    reference: "طه (82)"
-                },
-                dua: {
-                    title: "دعاء التوبة الخالصة",
-                    arabic: "اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ",
-                    explanation: "هذا الدعاء هو دعاء النبي ﷺ الذي كان يقوله في سجوده، وقد علمه للصحابة. يعترف فيه العبد بذنبه الكثير، ويؤكد أن المغفرة بيد الله وحده، ويطلب المغفرة والرحمة بأسماء الله الغفور الرحيم.",
-                    reference: "صحيح البخاري 4823"
-                },
-                hadith: {
-                    text: "يقول الله تعالى: كل عمل ابن آدم له، إلا الصيام، فإنه لي وأنا أجزي به",
-                    reference: "صحيح البخاري 1904"
-                },
-                story: {
-                    title: "عمر بن الخطاب يتبع أبا بكر في الليل",
-                    content: "كان أبو بكر الصديق رضي الله عنه يخرج في الليل فيتصدق سراً على الفقراء. فلاحظ عمر بن الخطاب خروجه، فتبعه سراً ليعرف ما يفعل. رأى أبا بكر يحمل زاداً ويطعاماً ويذهب إلى حي من أحياء المدينة، فيدق باباً هنا وباباً هناك، فيترك الطعام وينصرف دون أن يراه أحد. في الصباح، قال عمر لأبي بكر: يا خليفة رسول الله، من كنت تزور البارحة؟ فابتسم أبو بكر وقال: يا عمر، كنت أزور إخواناً لنا في الله، نسيهم الناس ونسوا الناس، لكن الله لم ينسهم. تعلمنا أن الصدقة السرية أعظم أجراً."
-                },
-                battle: {
-                    title: "غزوة بني المصطلق",
-                    date: "شعبان سنة 6 هـ",
-                    content: "خرج النبي ﷺ في هذه الغزوة لرد عدوان بني المصطلق. وفيها وقعت حادثة الإفك التي افتريت فيها على عائشة رضي الله عنها، فنزلت براءتها من السماء. وفيها قال النبي ﷺ: من نصر عبداً مظلوماً نصره الله في الدنيا والآخرة. وكانت من الغزوات المهمة في تاريخ الإسلام."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين ثلاث مرات بعد صلاة الفجر والمغرب",
-                        reward: "تكفي من كل شيء"
-                    },
-                    {
-                        text: "قول: أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه",
-                        reward: "من قالها في اليوم مئة مرة كانت له عدل عتق رقبة"
-                    },
-                    {
-                        text: "الصلاة على النبي ﷺ ألف مرة في اليوم",
-                        reward: "من صلى علي في اليوم ألف مرة لم يمت حتى يبشر بالجنة"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأدعو في السجود دعوات لو أدعيت بها على جبل لذاب، أو على صخر لتفتت، أو على حديد لانقطع."
-            },
-            {
-                // Day 11
-                verse: {
-                    title: "نور الهداية",
-                    arabic: "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ ۚ مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ ۖ الْمِصْبَاحُ فِي زُجَاجَةٍ ۖ الزُّجَاجَةُ كَأَنَّهَا كَوْكَبٌ دُرِّيٌّ يُوقَدُ مِنْ شَجَرَةٍ مُبَارَكَةٍ زَيْتُونَةٍ",
-                    translation: "الله نور السماوات والأرض، مثل نوره كمشكاة فيها مصباح، المصباح في زجاجة، الزجاجة كأنها كوكب دري يُوقد من شجرة مباركة زيتونة",
-                    explanation: "هذه الآية هي آية النور، وهي من أعظم آيات القرآن. تشبه الله بنوره، وقلب المؤمن بالنور الإلهي الذي يهديه. في رمضان، نسعى أن يكون قلبنا كالمشكاة التي يتوقد فيها نور الإيمان.",
-                    reference: "سورة النور (35)"
-                },
-                dua: {
-                    title: "دعاء استفتاح القرآن",
-                    arabic: "اللَّهُمَّ ارْحَمْنِي بِتَرْكِ الْمَعَاصِي أَبَدًا مَا أَبْقَيْتَنِي، وَارْحَمْنِي أَنْ أَتَصَدَّقَ مِنْ كُلِّ مَالٍ تُعْطِينِي، وَارْحَمْنِي بِتَرْكِ مَنْ يَحِلُّ لِي مِنَ النِّسَاءِ",
-                    explanation: "هذا الدعاء يطلب فيه العبد من الله ثلاث رحمات: ترك المعاصي مدى الحياة، والصدقة من كل مال يأتيه، والعفة والطهارة. يُستحب الدعاء به عند استفتاح القرآن في رمضان.",
-                    reference: "الآداب الشرعية لابن مفلح"
-                },
-                hadith: {
-                    text: "الصلاة الخمس، والجمعة إلى الجمعة، ورمضان إلى رمضان، مكفرات لما بينهن، ما لم تُصَبِّبِ الكبائر",
-                    reference: "صحيح مسلم 233"
-                },
-                story: {
-                    title: "عبد الله بن عمر يحج ماشياً",
-                    content: "كان عبد الله بن عمر رضي الله عنهما يحج ماشياً، ويقول: إني لأستحيي من ربي أن ألقاه وأنا أركب ما لم يضع لي. وكان يمشي في الشمس الحارقة حتى تدمى قدماه. فقيل له: لم لا تركب؟ فقال: إني لأستحيي أن ألقى الله وأنا أركب ما لم يضع لي. وكان يقول: إني لأعتكف في رمضان، فأترك الناس وما هم فيه، وألقى الله في جوف الليل أسأله الجنة. تعلمنا أن التضحية في طاعة الله لا تُعَدُّ ولا تُحصى، وأن الحياء من الله يدفع العبد إلى أعلى درجات الإخلاص."
-                },
-                battle: {
-                    title: "سرية أبي قتادة بن ربعي",
-                    date: "رمضان سنة 8 هـ",
-                    content: "بعث النبي ﷺ أبا قتادة في سرية، وكانوا صياماً. فلما لقوا العدو، قال أبو قتادة: إن لكم عدواً أمامكم، ولكم عدواً خلفكم (يقصد الجوع والعطش)، فمن شاء فليفطر ومن شاء فليصم. فصاموا حتى رجعوا. وجاء رجل فقال: يا رسول الله، إني لأصوم في السفر فأجد من ذلك ضعفاً. فقال النبي ﷺ: أفطر إن شئت، فإن الله قد أعفاك."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الكهف يوم الجمعة",
-                        reward: "من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين"
-                    },
-                    {
-                        text: "قول: سبحان الله العظيم وبحمده",
-                        reward: "دبيبها في الميزان أحب إلي مما طلعت عليه الشمس"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    }
-                ],
-                fact: "كان الإمام مالك بن أنس رحمه الله يقول: إني لأكره للرجل أن يموت وعليه صيام يوم واحد من رمضان."
-            },
-            {
-                // Day 12
-                verse: {
-                    title: "سر العفو والتجاوز",
-                    arabic: "وَلَا تَسْتَوِي الْحَسَنَةُ وَلَا السَّيِّئَةُ ۚ ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ",
-                    translation: "ولا تستوي الحسنة ولا السيئة، ادفع بالتي هي أحسن فإذا الذي بينك وبينه عداوة كأنه ولي حميم",
-                    explanation: "هذه الآية تعلمنا أن نرد السيئة بالحسنة، فإذا أساء إلينا إنسان فنحسن إليه، يتحول العدو إلى صديق حميم. في رمضان، نتدرب على كظم الغيظ ورد الإساءة بالإحسان.",
-                    reference: "سورة فصلت (34)"
-                },
-                dua: {
-                    title: "دعاء رد الإساءة بالإحسان",
-                    arabic: "اللَّهُمَّ اجْعَلْنِي مِمَّنْ يُحِبُّونَ أَنْ يَلْقَوْا اللَّهَ، وَأَحِبَّنِي كَمَا يُحِبُّ أَوْلِيَاءَكَ الصَّالِحِينَ",
-                    explanation: "هذا الدعاء يطلب فيه العبد من الله أن يجعله من الذين يشتاقون إلى لقائه ويحبون موعده، وأن يُحبَّه الله كما يحب أولياءه. من أحب لقاء الله أحب الله لقاءه، ومن كره لقاء الله كره الله لقاءه.",
-                    reference: "حسن"
-                },
-                hadith: {
-                    text: "كان النبي ﷺ أجود الناس، وكان أجود ما يكون في رمضان حين يلقاه جبريل",
-                    reference: "صحيح البخاري 6"
-                },
-                story: {
-                    title: "أبو الدرداء يترك تجارته للعلم",
-                    content: "كان أبو الدرداء رضي الله عنه تاجراً في دمشق، وكان يكسب مالاً كثيراً. فسمع أن النبي ﷺ يعلم الناس في المدينة، فترك تجارته وماله وجاء إلى المدينة. فقال له النبي ﷺ: يا أبا الدرداء، إن الله قد أعطاك مالاً حسناً، فأحسن فيه. فقال: يا رسول الله، إني أحب العلم أكثر من المال. فأقام عند النبي ﷺ يتعلم، حتى صار من فقهاء الصحابة. وكان يقول: إني لأستحيي أن ألقى الله وأنا أحب شيئاً من الدنيا أكثر من العلم. تعلمنا أن العلم أغلى من المال، وأن طلب العلم فريضة على كل مسلم."
-                },
-                battle: {
-                    title: "سرية زيد بن حارثة",
-                    date: "رمضان سنة 6 هـ",
-                    content: "بعث النبي ﷺ زيد بن حارثة في سرية إلى سيد بن سلمة في فدك. فخرجوا في رمضان، وكانوا صياماً. فلما أتوا الماء، قال زيد: لا تفطروا حتى تفطروا على عدوكم. ففطروا على عدوهم من آخر النهار. وكان النبي ﷺ يبعث السرايا في رمضان، وكان الصحابة يختارون الصيام في الجهاد رغم جواز الإفطار."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة 36 بعد صلاة الصبح",
-                        reward: "من قرأ يس في ليلة ابتغاء وجه الله غُفِرَ له"
-                    },
-                    {
-                        text: "قول: لا حول ولا قوة إلا بالله",
-                        reward: "كنز من كنوز الجنة"
-                    },
-                    {
-                        text: "التسبيح بعد الصلوات",
-                        reward: "من سبح الله ثلاثاً وثلاثين بعد كل صلاة غفرت له ذنوبه"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يختم القرآن في رمضان ستين ختمة، أي ختمتين في اليوم."
-            },
-            {
-                // Day 13
-                verse: {
-                    title: "سر القوة في الضعف",
-                    arabic: "وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ ۚ إِنَّ اللَّهَ بَالِغُ أَمْرِهِ ۚ قَدْ جَعَلَ اللَّهُ لِكُلِّ شَيْءٍ قَدْرًا",
-                    translation: "ومن يتوكل على الله فهو حسبه، إن الله بالغ أمره، قد جعل الله لكل شيء قدراً",
-                    explanation: "هذه الآية تبشر المتوكل على الله أنه كافيه وواقيه، وأن الله ينفذ أمره في خلقه، وأنه قدَّر لكل شيء أجله ونصيبه. في رمضان، نتعلم التوكل على الله في الصيام والقيام، فهو الرازق المعطي.",
-                    reference: "سورة الطلاق (3)"
-                },
-                dua: {
-                    title: "دعاء التوكل والثقة بالله",
-                    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى",
-                    explanation: "هذا الدعاء يطلب فيه العبد أربع خصال عظيمة: الهدى إلى الصراط المستقيم، والتقوى التي تحفظه من الشر، والعفة التي تحفظه من الفواحش، والغنى الذي يجعله مستغنياً عن الناس محتاجاً إلى الله فقط.",
-                    reference: "صحيح مسلم 2721"
-                },
-                hadith: {
-                    text: "الصيام نصف الصبر، وجزاء الصبر الجنة",
-                    reference: "سنن ابن ماجه 1742"
-                },
-                story: {
-                    title: "الحسن البصري يبكي خوفاً من الله",
-                    content: "كان الحسن البصري رحمه الله إذا ذكر الجنة والنار، يبكي حتى يخض لحيته بالدموع. وكان يقول: يا ابن آدم، إنك لن تزال بخير ما كان لك واعظ من نفسك، وكانت المحاسبة من نفسك. وكان يقول: إني لأرى الرجل يضحك وأنا أعجب من ضحكه، أما يعلم أن الله قد خلق له ناراً تحيط به من كل جانب؟ تعلمنا أن خوف الله وخشيته هي أعظم الدوافع على الطاعة، وأن البكاء من خشية الله من أعظم الأعمال."
-                },
-                battle: {
-                    title: "غزوة مؤتة",
-                    date: "جمادى الأولى سنة 8 هـ",
-                    content: "كانت أول معركة يقود فيها الجيش ثلاثة من كبار الصحابة: زيد بن حارثة، ثم جعفر بن أبي طالب، ثم عبد الله بن رواحة، ثم خالد بن الوليد. كان المسلمون ثلاثة آلاف، والروم مائة ألف أو أكثر. استشهد فيها القادة الثلاثة، فتولى القيادة خالد بن الوليد فأبدع في المناورة حتى أنقذ الجيش. وكان النبي ﷺ في المدينة يخبر أصحابه بما يجري في المعرض."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص عشر مرات بعد صلاة الفجر",
-                        reward: "من قرأها عشر مرات بعد الفجر بنى الله له قصراً في الجنة"
-                    },
-                    {
-                        text: "قول: أعوذ بكلمات الله التامات من شر ما خلق",
-                        reward: "من قالها ثلاث مرات حين يمسي وحين يصبح لم يضره سم ولا سحر"
-                    },
-                    {
-                        text: "الاستغفار بين الأذان والإقامة",
-                        reward: "الدعاء لا يرد بين الأذان والإقامة"
-                    }
-                ],
-                fact: "كان الصحابي أبو ذر الغفاري رضي الله عنه يقول: إني لأحب الموت لقاء الله، وأحب الفقر لأن الله يفتقرني إلى الناس، وأحب المرض لأن الله يكفر بها خطاياي."
-            },
-            {
-                // Day 14
-                verse: {
-                    title: "مفتاح محبة الله",
-                    arabic: "قُلْ إِنْ كُنْتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي يُحْبِبْكُمُ اللَّهُ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ ۗ وَاللَّهُ غَفُورٌ رَحِيمٌ",
-                    translation: "قل إن كنتم تحبون الله فاتبعوني يحببكم الله ويغفر لكم ذنوبكم، والله غفور رحيم",
-                    explanation: "هذه الآية تضع شرطاً لمحبة الله: اتباع النبي ﷺ. فمن أحب الله حقاً فعليه باتباع سنته في القول والعمل، فيحبه الله ويغفر له. في رمضان، نتذكر أن محبة الله تقتضي محبة رسوله واتباع هديه.",
-                    reference: "سورة آل عمران (31)"
-                },
-                dua: {
-                    title: "دعاء طلب محبة الله",
-                    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ حُبَّكَ وَحُبَّ مَنْ يُحِبُّكَ وَالْعَمَلَ الَّذِي يُبَلِّغُنِي حُبَّكَ",
-                    explanation: "هذا الدعاء يطلب فيه العبد ثلاثة أمور: محبة الله له، ومحبة أولياء الله، والعمل الصالح الذي يبلغه حب الله. قال النبي ﷺ: من أحب لله وأبغض لله وأعطى لله ومنع لله فقد استكمل الإيمان.",
-                    reference: "سنن الترمذي 3490"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "أبو بكر يشتري بلالاً ويعتقه",
-                    content: "كان بلال بن رباح رضي الله عنه عبداً مملوكاً عند أمية بن خلف، وكان يعذبه على إسلامه فيضعه في حجارة ملتهبة على صدره ويقول: لا إله إلا الله. فمر به أبو بكر الصديق فقال: ألا تتقي الله في هذا المسكين؟ فقال أمية: أنت الذي أفسدته فأنقذه. فقال أبو بكر: بخ، أبيعني إياه. فاشتراه بسبع أوقيات من الذهب، وأعتقه في اللحظة. فصار بلال مؤذن رسول الله ﷺ، وصار صوته يرن في السماء إلى يومنا هذا. تعلمنا أن إنقاذ المظلوم وإعانة المسلم أعظم الأعمال."
-                },
-                battle: {
-                    title: "غزوة خيبر",
-                    date: "صفر سنة 7 هـ",
-                    content: "كانت غزوة خيبر فتحاً عظيماً للمسلمين. كان اليهود يتحصنون في حصونهم، ففتحها الله على يد النبي ﷺ. وفيها قال النبي ﷺ: لأعطين الراية غداً رجلاً يفتح الله على يديه، يحب الله ورسوله ويحبه الله ورسوله. فكان علي بن أبي طالب. وفيها استحلت المغنمات للمسلمين، وكانت أول فتح يأتي فيه المسلمون أموالاً كثيرة."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الملك قبل النوم",
-                        reward: "إن سورة من القرآن ثلاثون آية شفعت لرجل حتى غُفِرَ له"
-                    },
-                    {
-                        text: "قول: اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور",
-                        reward: "من قالها حين يصبح وحين يمسي كان حقاً على الله أن يرضيه يوم القيامة"
-                    },
-                    {
-                        text: "الصلاة على النبي ﷺ بعد الأذان",
-                        reward: "من صلى علي عشراً صلى الله عليه عشراً"
-                    }
-                ],
-                fact: "كان الإمام البخاري رحمه الله يقول: إني لأتمنى أن أكون كالشعرة في جنب المسلمين، لا أذكر ولا أُذكر."
-            },
-            {
-                // Day 15 - Halfway Point
-                verse: {
-                    title: "منتصف رمضان والتجديد",
-                    arabic: "وَإِنِّي لَغَفَّارٌ لِمَنْ تَابَ وَآمَنَ وَعَمِلَ صَالِحًا ثُمَّ اهْتَدَىٰ",
-                    translation: "وإني لغفار لمن تاب وآمن وعمل صالحاً ثم اهتدى",
-                    explanation: "هذه الآية بشرى عظيمة للتائبين، أن الله غفار لمن تاب توبة نصوحاً، وآمن بالله ورسوله، وعمل صالحاً متبعاً السنة. في منتصف رمضان، يتذكر العبد أن نصف الشهر قد مضى، فيتوب إلى ربه قبل أن يفوته قطار المغفرة.",
-                    reference: "طه (82)"
-                },
-                dua: {
-                    title: "دعاء استقبال النصف الثاني",
-                    arabic: "اللَّهُمَّ أَعِنِّي عَلَى نَفْسِي الشَّقِيَّةِ، وَاجْعَلْنِي مِنَ الْمُتَوَكِّلِينَ عَلَيْكَ فِي جَمِيعِ أُمُورِي، وَاجْعَلْنِي مِنَ الشَّاكِرِينَ لِنِعَمِكَ",
-                    explanation: "هذا الدعاء يطلب فيه العبد من الله المعونة على النفس الأمارة بالسوء، والتوكل على الله في جميع الأمور، والشكر على النعم. في منتصف رمضان، نحتاج إلى تجديد العزم والنية لاستكمال الشهر.",
-                    reference: "دعاء مستجاب"
-                },
-                hadith: {
-                    text: "دعاء الصائم لا يرد",
-                    reference: "سنن ابن ماجه 1753"
-                },
-                story: {
-                    title: "عمر بن الخطاب يتبع أبا بكر في الليل",
-                    content: "كان أبو بكر الصديق رضي الله عنه يخرج في الليل فيتصدق سراً على الفقراء. فلاحظ عمر بن الخطاب خروجه، فتبعه سراً ليعرف ما يفعل. رأى أبا بكر يحمل زاداً ويطعاماً ويذهب إلى حي من أحياء المدينة، فيدق باباً هنا وباباً هناك، فيترك الطعام وينصرف دون أن يراه أحد. في الصباح، قال عمر لأبي بكر: يا خليفة رسول الله، من كنت تزور البارحة؟ فابتسم أبو بكر وقال: يا عمر، كنت أزور إخواناً لنا في الله، نسيهم الناس ونسوا الناس، لكن الله لم ينسهم. تعلمنا أن الصدقة السرية أعظم أجراً."
-                },
-                battle: {
-                    title: "فتح مصر",
-                    date: "بعث عمرو بن العاص سنة 20 هـ",
-                    content: "بعث الخليفة عمر بن الخطاب عمرو بن العاص لفتح مصر. كان الفرس والروم يحكمونها، ففتحها الله على يد المسلمين. وفيها قال عمرو بن العاص: لقد كنت أظن أن مصر لا تُفتح أبداً. فكتب إليه عمر: إنما نحن قوم نُعزُّ بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. وكانت مصر من أعظم الفتوحات الإسلامية، وما زالت دار إسلام إلى يومنا هذا."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين ثلاث مرات بعد صلاة الفجر والمغرب",
-                        reward: "تكفي من كل شيء"
-                    },
-                    {
-                        text: "قول: أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه",
-                        reward: "من قالها في اليوم مئة مرة كانت له عدل عتق رقبة"
-                    },
-                    {
-                        text: "الصلاة على النبي ﷺ ألف مرة في اليوم",
-                        reward: "من صلى علي في اليوم ألف مرة لم يمت حتى يبشر بالجنة"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأدعو في السجود دعوات لو أدعيت بها على جبل لذاب، أو على صخر لتفتت، أو على حديد لانقطع."
-            },
-            {
-                // Day 16
-                verse: {
-                    title: "سر الرزق والبركة",
-                    arabic: "وَمَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مِنْ أَمْرِهِ يُسْرًا",
-                    translation: "ومن يتق الله يجعل له من أمره يسراً",
-                    explanation: "هذه الآية تبشر المتقي باليسر في أموره، وأن الله يفتح له أبواب الخير ويسهل عليه مشاق الحياة. في رمضان، نتعلم أن التقوى ليست بمشقة، بل هي سبب لكل يسر وسعادة.",
-                    reference: "سورة الطلاق (4)"
-                },
-                dua: {
-                    title: "دعاء طلب اليسر والبركة",
-                    arabic: "اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا",
-                    explanation: "هذا الدعاء يقرر فيه العبد أن السهولة كلها بيد الله، وأنه لا يوجد شيء صعب على الله. يطلب من الله أن يجعل أموره سهلة يسيرة، وأن يحول صعوباته إلى سهولات بقدرته.",
-                    reference: "حسن"
-                },
-                hadith: {
-                    text: "الصيام جُنَّةٌ، فلا يرفث ولا يجهل، وإن امْرُؤٌ قاتله أو شاتمه فليقل: إني صائم",
-                    reference: "صحيح البخاري 1894"
-                },
-                story: {
-                    title: "عبد الله بن مسعود يتعلم من النبي ﷺ",
-                    content: "كان عبد الله بن مسعود رضي الله عنه رقيق الجسد، صغير القدمين، رث الثياب. قال له بعض الناس: لو تمنعت من قيام الليل فإنك ضعيف. فقال: أتأمرونني بترك قيام الليل؟! إني لأرجو من الله ما لا ترجون. ثم ذكر أنه كان يحرس النبي ﷺ في ليلة شديدة الظلمة والبرد، فجاء النبي ﷺ فقال: يا ابن مسعود، قم فصلِّ. فقال: يا رسول الله، وما لي وما لصلاي؟ فقال النبي ﷺ: ألا أبشرك بأفضل سورتين قرأت بهما؟ قل هو الله أحد والمعوذتين حين تمسي وحين تصبح ثلاث مرات تكفيك من كل شيء."
-                },
-                battle: {
-                    title: "فتح الشام",
-                    date: "خلافة عمر بن الخطاب",
-                    content: "كان فتح الشام من أعظم الفتوحات الإسلامية. قاد الجيوش خالد بن الوليد وأبو عبيدة بن الجراح ويزيد بن أبي سفيان وشرحبيل بن حسنة. فتحوا دمشق وبيروت وصيدون وحمص وحلب وغيرها. وفيها قال خالد بن الوليد: إنما نحن قوم أكرمنا الله بالإسلام، فإن ابتغينا الكرامة بغيره أذلنا الله. وكانت الشام من أولى البلاد التي فتحها المسلمون."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الكهف يوم الجمعة",
-                        reward: "من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين"
-                    },
-                    {
-                        text: "قول: سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه ومداد كلماته",
-                        reward: "من قالها ثلاث مرات في دبر كل صلاة غفرت له ذنوبه"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يختم القرآن في رمضان ستين ختمة، أي ختمتين في اليوم."
-            },
-            {
-                // Day 17
-                verse: {
-                    title: "سر الشفاعة",
-                    arabic: "وَمَنْ يَقْتَرِفْ حَسَنَةً نَزِدْ لَهُ فِيهَا حُسْنًا ۚ إِنَّ اللَّهَ غَفُورٌ شَكُورٌ",
-                    translation: "ومن يقترف حسنة نزد له فيها حسناً، إن الله غفور شكور",
-                    explanation: "هذه الآية تبشر المحسنين أن الله يضاعف الحسنة أضعافاً كثيرة، وأنه غفور لذنوب عباده، شكور لأعمالهم يثيبهم عليها. في رمضان، تتضاعف الحسنات، فالحسنة بعشر أمثالها إلى سبعمائة ضعف.",
-                    reference: "سورة النساء (40)"
-                },
-                dua: {
-                    title: "دعاء يستجير به العبد",
-                    arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ سَمْعِي وَمِنْ شَرِّ بَصَرِي وَمِنْ شَرِّ لِسَانِي وَمِنْ شَرِّ قَلْبِي وَمِنْ شَرِّ مَنِيِّي",
-                    explanation: "هذا الدعاء يستعيذ فيه العبد من شر جوارحه الخمس: السمع بالاستماع إلى الحرام، والبصر بالنظر إلى المحرم، واللسان بالغيبة والكذب، والقلب بالشك والنفاق، والمنيّ بالحرام. يُستحب قوله في الصباح والمساء.",
-                    reference: "سنن النسائي 1206"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "الحسن البصري يبكي خوفاً من الله",
-                    content: "كان الحسن البصري رحمه الله إذا ذكر الجنة والنار، يبكي حتى يخض لحيته بالدموع. وكان يقول: يا ابن آدم، إنك لن تزال بخير ما كان لك واعظ من نفسك، وكانت المحاسبة من نفسك. وكان يقول: إني لأرى الرجل يضحك وأنا أعجب من ضحكه، أما يعلم أن الله قد خلق له ناراً تحيط به من كل جانب؟"
-                },
-                battle: {
-                    title: "فتح العراق",
-                    date: "خلافة عمر بن الخطاب",
-                    content: "قاد فتح العراق سعد بن أبي وقاص في معركة القادسية الشهيرة. كان المسلمون ستة آلاف، والفرس ستين ألفاً بقيادة رستم. استمرت المعركة أربعة أيام، وانتصر فيها المسلمون انتصاراً عظيماً. سقط رستم في المعركة، وانهارت الدولة الفارسية. وفيها قال سعد: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة 36 بعد صلاة الصبح",
-                        reward: "من قرأ يس في ليلة ابتغاء وجه الله غُفِرَ له"
-                    },
-                    {
-                        text: "قول: لا حول ولا قوة إلا بالله",
-                        reward: "كنز من كنوز الجنة"
-                    },
-                    {
-                        text: "التسبيح بعد الصلوات",
-                        reward: "من سبح الله ثلاثاً وثلاثين بعد كل صلاة غفرت له ذنوبه"
-                    }
-                ],
-                fact: "كان الصحابي أبو ذر الغفاري رضي الله عنه يقول: إني لأحب الموت لقاء الله، وأحب الفقر لأن الله يفتقرني إلى الناس، وأحب المرض لأن الله يكفر بها خطاياي."
-            },
-            {
-                // Day 18
-                verse: {
-                    title: "سر النجاة من النار",
-                    arabic: "ثُمَّ لَنَنزِعَنَّ مِن كُلِّ شِيعَةٍ أَيُّهُمْ أَشَدُّ عَلَى الرَّحْمَنِ عِتِيًّا",
-                    translation: "ثم لننزعن من كل شيعة أيهم أشد على الرحمن عتياً",
-                    explanation: "هذه الآية تبشر أن الله سينجو المؤمنين من كل فرقة، ويميز المجرمين منهم. في رمضان، نتذكر أن النجاة ليست بالانتساب، بل بالعمل الصالح والتقوى.",
-                    reference: "سورة مريم (69)"
-                },
-                dua: {
-                    title: "دعاء طلب النجاة من النار",
-                    arabic: "اللَّهُمَّ أَجِرْنِي مِنَ النَّارِ، وَادْخِلْنِي الْجَنَّةَ، وَاجْعَلْنِي مِنَ الْمُتَّقِينَ، وَاجْعَلْنِي مِنَ الْمُخْلِصِينَ",
-                    explanation: "هذا الدعاء يطلب فيه العبد أربع أمور: النجاة من النار، والدخول في الجنة، والتقوى التي تحفظه من الشر، والإخلاص في العبادة. يُستحب الإكثار منه في العشر الأواخر من رمضان.",
-                    reference: "دعاء مستجاب"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "عثمان بن عفان يحفر بئر رومة بماله كله",
-                    content: "كان الناس يتعذرون من الماء في المدينة، وكان بئر رومة يملكه يهودي يبيع الماء للمسلمين بثمن باهظ. فجاء عثمان بن عفان رضي الله عنه إلى اليهودي ليشتري البئر، فرفض. ثم عرض عليه أن يشتري نصفه، فوافق. وجعل عثمان نصيبه مفتوحاً للمسلمين مجاناً، فلم يعد أحد يشتري من اليهودي، فاضطر أن يبيع نصيبه لعثمان. فتحرر البئر للمسلمين، وكان النبي ﷺ يقول: من حفر بئر رومة دخل الجنة. فدخلها عثمان بماله وجهده."
-                },
-                battle: {
-                    title: "فتح فارس",
-                    date: "خلافة عمر وعثمان رضي الله عنهما",
-                    content: "تم فتح فارس (العراق وإيران حالياً) على يد المسلمين في عهد الخليفتين عمر وعثمان. كانت الدولة الفارسية من أعظم دول العالم آنذاك، لكنها انهارت أمام المسلمين. وفيها قال المسلمون: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. ودخل الناس في دين الله أفواجاً."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الملك قبل النوم",
-                        reward: "إن سورة من القرآن ثلاثون آية شفعت لرجل حتى غُفِرَ له"
-                    },
-                    {
-                        text: "قول: أعوذ بكلمات الله التامات من شر ما خلق",
-                        reward: "من قالها ثلاث مرات حين يمسي وحين يصبح لم يضره سم ولا سحر"
-                    },
-                    {
-                        text: "الاستغفار في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    }
-                ],
-                fact: "كان الإمام البخاري رحمه الله يقول: كنت في صباي ألعب بالصبيان، فإذا سمعت الأذان كنت أذهب إلى المسجد."
-            },
-            {
-                // Day 19
-                verse: {
-                    title: "سر التواضع",
-                    arabic: "وَعِبَادُ الرَّحْمَنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا",
-                    translation: "وعباد الرحمن الذين يمشون على الأرض هوناً",
-                    explanation: "هذه الآية تصف عباد الرحمن بالتواضع في مشيهم وحديثهم، لا يتكبرون على الناس، ولا يمشون في الأرض مرحاً. في رمضان، نتدرب على التواضع لله و لخلقه.",
-                    reference: "سورة الفرقان (63)"
-                },
-                dua: {
-                    title: "دعاء طلب التواضع",
-                    arabic: "اللَّهُمَّ اجْعَلْنِي لَكَ شَكَّارًا، لَكَ ذَكَّارًا، لَكَ رَهَّابًا، لَكَ مُطْوَاعًا، إِلَيْكَ أَوَّاهًا مُنِيبًا",
-                    explanation: "هذا الدعاء يطلب فيه العبد خمس خصال: الشكر على النعم، والذكر الدائم، والخوف من الله، والطاعة التامة، والإنابة والرجوع إلى الله. هذه هي صفات عباد الرحمن.",
-                    reference: "سنن النسائي 1305"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "علي بن أبي طالب يتصدق بدرعه",
-                    content: "كان علي بن أبي طالب رضي الله عنه يعمل في إزالة التراب عن الآبار بيديه، وكان يأخذ أجراً على ذلك. فجاءه رجل فقال: يا علي، إني فقير وعندي عيال. فقال علي: اذهب إلى بيتي فخذ درعي فبعه وأنفق على عيالك. فذهب الرجل فباع الدرع بأربعمائة درهم، وجاء يعطيها لعلي. فقال علي: خذها أنت فأعطها لعيالك، واذهب بدرعي. فقال الرجل: يا أمير المؤمنين، أتعطيني الدرع والدراهم؟ قال: نعم، والله لأنفقن درهمي ودرهم الدرع في سبيل الله أحب إلي من أن أعتق رقبة."
-                },
-                battle: {
-                    title: "فتح مصر",
-                    date: "بعث عمرو بن العاص سنة 20 هـ",
-                    content: "بعث الخليفة عمر بن الخطاب عمرو بن العاص لفتح مصر. كان الفرس والروم يحكمونها، ففتحها الله على يد المسلمين. وفيها قال عمرو بن العاص: لقد كنت أظن أن مصر لا تُفتح أبداً. فكتب إليه عمر: إنما نحن قوم نُعزُّ بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. وكانت مصر من أعظم الفتوحات الإسلامية."
-                },
-                adhkar: [
-                    {
-                        text: "قراءة سورة الإخلاص عشر مرات بعد صلاة الفجر",
-                        reward: "من قرأها عشر مرات بعد الفجر بنى الله له قصراً في الجنة"
-                    },
-                    {
-                        text: "قول: اللهم صل وسلم على نبينا محمد",
-                        reward: "من صلى علي في اليوم ألف مرة لم يمت حتى يبشر بالجنة"
-                    },
-                    {
-                        text: "التهليل مئة مرة",
-                        reward: "من قال لا إله إلا الله مئة مرة كانت له عدل عتق عشر رقاب"
-                    }
-                ],
-                fact: "كان الإمام مالك بن أنس رحمه الله يقول: إني لأكره للرجل أن يموت وعليه صيام يوم واحد من رمضان."
-            },
-            {
-                // Day 20
-                verse: {
-                    title: "بداية العشر الأواخر",
-                    arabic: "وَعَدَ صِدْقٍ",
-                    translation: "وعد صدق",
-                    explanation: "هذه الآية تبشر المؤمنين بوعد الله الصادق بالجنة، وأن الله لا يخلف الميعاد. في بداية العشر الأواخر، نتذكر أن الله قد وعدنا بمغفرة الذنوب في هذه الليالي، فلنحرص على استغلالها.",
-                    reference: "سورة الأحقاف (16)"
-                },
-                dua: {
-                    title: "دعاء استقبال العشر الأواخر",
-                    arabic: "اللَّهُمَّ إِنَّكَ عُفُوٌّ كَرِيمٌ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي، وَتَقَبَّلْ تَوْبَتِي، وَاغْفِرْ ذُنُوبِي، وَأَجِرْنِي مِنَ النَّارِ",
-                    explanation: "هذا الدعاء يُستحب في العشر الأواخر من رمضان، يطلب فيه العبد العفو والمغفرة والنجاة من النار. يؤكد على صفة العفو التي هي أعظم من المغفرة، لأنها تمحو الذنب ولا يُسأل عنه.",
-                    reference: "سنن الترمذي 3513"
-                },
-                hadith: {
-                    text: "كان النبي ﷺ يجتهد في العشر الأواخر ما لا يجتهد في غيرها",
-                    reference: "صحيح مسلم 1175"
-                },
-                story: {
-                    title: "الحسن البصري يعتكف في العشر الأواخر",
-                    content: "كان الحسن البصري رحمه الله إذا دخل العشر الأواخر من رمضان، أغلق بابه وقطع عن نفسه كل شاغل، ولبس الملابس الخشنة، وشد المئزر، وأقبل على ربه بكليته. وكان يقول: يا ابن آدم، إنما أنت أيام، إذا ذهب يومك ذهب بعضك. وكان يبكي ليلة كاملة ولا يفتر، حتى يقال: لو شققتم قلبه لوجدتموه كالكرب الأسود من كثرة الخوف من الله."
-                },
-                battle: {
-                    title: "فتح الأندلس",
-                    date: "92 هـ على يد طارق بن زياد",
-                    content: "كان فتح الأندلس من أعظم الفتوحات الإسلامية. عبر طارق بن زياد بجيشه من المغرب إلى الأندلس، وفتحها في زمن قياسي. وقف طارق بن زياد يخطب في جنوده: أيها الناس، أين المفر؟ البحر من ورائكم، والعدو أمامكم، وليس لكم إلا الصدق والصبر. فاقتحموا الجزيرة وفتحوها، وظلت دار إسلام ثمانية قرون."
-                },
-                adhkar: [
-                    {
-                        text: "الاعتكاف في العشر الأواخر",
-                        reward: "من اعتكف عشراً من رمضان كانت له أجر حجة وعمرة"
-                    },
-                    {
-                        text: "قيام الليل في العشر الأواخر",
-                        reward: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    }
-                ],
-                fact: "كان النبي ﷺ إذا دخل العشر الأواخر من رمضان أحيا الليل وأيقظ أهله، وشد المئزر، وجد في العبادة."
-            },
-            {
-                // Day 21
-                verse: {
-                    title: "ليلة القدر الأولى",
-                    arabic: "إِنَّا أَنزَلْنَاهُ فِي لَيْلَةٍ مُّبَارَكَةٍ ۚ إِنَّا كُنَّا مُنذِرِينَ",
-                    translation: "إنا أنزلناه في ليلة مباركة، إنا كنا منذرين",
-                    explanation: "هذه الآية تبشر بأن القرآن نزل في ليلة مباركة هي ليلة القدر، وأن الله أرسل الرسل منذرين للناس. في ليلة 21، نبدأ البحث عن ليلة القدر بجدية أكبر.",
-                    reference: "سورة الدخان (3)"
-                },
-                dua: {
-                    title: "دعاء ليلة القدر",
-                    arabic: "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",
-                    explanation: "هذا هو الدعاء الذي علمته عائشة رضي الله عنها للنبي ﷺ، وهو أفضل دعاء في ليلة القدر. يطلب فيه العبد العفو الذي هو أعظم من المغفرة، لأنه يمحو الذنب تماماً كأنه لم يكن.",
-                    reference: "سنن الترمذي 3513"
-                },
-                hadith: {
-                    text: "تحروا ليلة القدر في العشر الأواخر من رمضان",
-                    reference: "صحيح البخاري 2020"
-                },
-                story: {
-                    title: "عمر بن الخطاب يقوم الليل كله",
-                    content: "كان عمر بن الخطاب رضي الله عنه يقوم الليل كله في رمضان، فيصلي ويدعو ويبكي. وكان إذا نام في الليل قال: يا نفس، ما أجدك إلا ناعسة، ارقي درجات الجنة فإنها لا تُرقى بالنوم. وكان يقول: نوم العلماء خسارة، ونوم الأغنياء خيانة، ونوم الفقراء راحة. تعلمنا أن الوقت أغلى ما نملك، وأن العشر الأواخر لا تُعوض."
-                },
-                battle: {
-                    title: "فتح القسطنطينية",
-                    date: "1453 م على يد محمد الفاتح",
-                    content: "كان فتح القسطنطينية حلم النبي ﷺ، فقال: لَتُفْتَحَنَّ الْقُسْطَنْطِينِيَّةُ فَلَنِعْمَ الْأَمِيرُ أَمِيرُهَا، وَلَنِعْمَ الْجَيْشُ ذَلِكَ الْجَيْشُ. تحقق هذا الوعد على يد السلطان محمد الفاتح بعد 800 سنة. فتحها بعد حصار دام 53 يوماً، ودخلها رافعاً راية الإسلام، وصلى في آيا صوفيا."
-                },
-                adhkar: [
-                    {
-                        text: "الاعتكاف في المسجد",
-                        reward: "من اعتكف عشراً من رمضان كانت له أجر حجة وعمرة"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأدعو في السجود دعوات لو أدعيت بها على جبل لذاب."
-            },
-            {
-                // Day 22
-                verse: {
-                    title: "نزول الملائكة",
-                    arabic: "تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍ",
-                    translation: "تنزل الملائكة والروح فيها بإذن ربهم من كل أمر",
-                    explanation: "هذه الآية تصف ليلة القدر بنزول الملائكة فيها بإذن الله، وتنزيل الأقدار فيها. في هذه الليلة، تتنزل الرحمة والبركات، وتُقدر الأرزاق والآجال.",
-                    reference: "سورة القدر (4)"
-                },
-                dua: {
-                    title: "دعاء طلب الرحمة",
-                    arabic: "رَبِّ اغْفِرْ وَارْحَمْ وَأَنتَ خَيْرُ الرَّاحِمِينَ",
-                    explanation: "هذا الدعاء يجمع بين طلب المغفرة والرحمة، ويؤكد أن الله هو خير الراحمين. يُستحب الإكثار منه في ليلة القدر، لأنها ليلة الرحمة والمغفرة.",
-                    reference: "سورة المؤمنون (118)"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "عبد الله بن عمر يعتكف",
-                    content: "كان عبد الله بن عمر رضي الله عنهما يعتكف في العشر الأواخر من رمضان، ويقول: إني لأعتكف في رمضان، فأترك الناس وما هم فيه، وألقى الله في جوف الليل أسأله الجنة. وكان يقول: إني لأرجو من الله أن يغفر لي في هذه الليالي ما مضى، وأن يتقبل مني ما بقي. تعلمنا أن الاعتكاف هو فرصة للانقطاع إلى الله والتفرغ للعبادة."
-                },
-                battle: {
-                    title: "فتح دمشق",
-                    date: "14 هـ على يد خالد بن الوليد وأبي عبيدة",
-                    content: "كان فتح دمشق من أعظم الفتوحات. دخلها المسلمون عنوة بعد حصار دام شهراً. وفيها قال خالد بن الوليد: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. وكانت دمشق من أقدم المدن التي فتحها المسلمون، وما زالت دار إسلام إلى يومنا هذا."
-                },
-                adhkar: [
-                    {
-                        text: "التهليل والتسبيح والتحميد والتكبير",
-                        reward: "من كبر من الفجر يوم عرفة إلى العصر آخر أيام التشريق غفر له ذنب من قبل"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يقول: إذا مر رمضان ولم يغفر للعبد فماذا يرجو بعده؟"
-            },
-            {
-                // Day 23
-                verse: {
-                    title: "السلام حتى الفجر",
-                    arabic: "سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
-                    translation: "سلام هي حتى مطلع الفجر",
-                    explanation: "هذه الآية تصف ليلة القدر بأنها سلام حتى الفجر، أي أنها ليلة أمان من كل شر، وسلامة من كل بلاء. في هذه الليلة، يشعر المؤمن بالطمأنينة والسكينة.",
-                    reference: "سورة القدر (5)"
-                },
-                dua: {
-                    title: "دعاء طلب السلامة",
-                    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا",
-                    explanation: "هذا الدعاء يطلب فيه العبد ثلاث خصال: العلم النافع، والرزق الطيب، والعمل المقبول. هذه هي أعظم مطالب الدنيا والآخرة، ويُستحب الإكثار منه في رمضان.",
-                    reference: "سنن ابن ماجه 925"
-                },
-                hadith: {
-                    text: "تحروا ليلة القدر في الوتر من العشر الأواخر من رمضان",
-                    reference: "صحيح البخاري 2020"
-                },
-                story: {
-                    title: "أبو بكر يعتكف في المسجد",
-                    content: "كان أبو بكر الصديق رضي الله عنه يعتكف في العشر الأواخر من رمضان، ويقول: إني لأرجو أن ألقى ليلة القدر في اعتكافي هذا. وكان يجتهد في العبادة حتى ينهكه التعب، فكان أصحابه يقولون: يا خليفة رسول الله، ارقأ. فيقول: أرقأ إلى متى؟ إن الموت أقرب إلي من رقأتي. تعلمنا أن الاعتكاف هو فرصة للاجتهاد في العبادة قبل أن يفوت الأوان."
-                },
-                battle: {
-                    title: "فتح بيت المقدس",
-                    date: "15 هـ على يد عمر بن الخطاب",
-                    content: "كان فتح بيت المقدس من أعظم الفتوحات. سلم أهلها المفاتيح لعمر بن الخطاب بنفسه، فجاء من المدينة ماشياً مع خادمه يتعاقبان على الدابة. وكتب فيها وثيقة عهد مشهورة تضمن حماية أهلها وكنائسهم وصلبانهم. وصلى عمر في المسجد الأقصى الذي أسري بالنبي ﷺ إليه."
-                },
-                adhkar: [
-                    {
-                        text: "قيام الليل",
-                        reward: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: أقرب ما يكون العبد من ربه وهو ساجد، فأكثروا فيه من الدعاء."
-            },
-            {
-                // Day 24
-                verse: {
-                    title: "مغفرة الذنوب",
-                    arabic: "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ",
-                    translation: "قل يا عبادي الذين أسرفوا على أنفسهم لا تقنطوا من رحمة الله، إن الله يغفر الذنوب جميعاً، إنه هو الغفور الرحيم",
-                    explanation: "هذه الآية بشرى عظيمة للمذنبين، أن الله يغفر جميع الذنوب، وأنه لا ييأس من رحمته أحد. في هذه الليالي، نتذكر أن باب التوبة مفتوح، وأن الله يحب التوابين.",
-                    reference: "سورة الزمر (53)"
-                },
-                dua: {
-                    title: "دعاء طلب المغفرة",
-                    arabic: "اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ، دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلَانِيَتَهُ وَسِرَّهُ",
-                    explanation: "هذا الدعاء يطلب فيه العبد المغفرة الشاملة لجميع ذنوبه، الصغير والكبير، القديم والحديث، العلني والسر. يؤكد على استحقاق الذنوب للمغفرة بفضل الله.",
-                    reference: "صحيح مسلم 2719"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "عثمان بن عفان يبكي عند القرآن",
-                    content: "كان عثمان بن عفان رضي الله عنه إذا قرأ القرآن بكى حتى تبل لحيته. فقيل له: يا أمير المؤمنين، ما يبكيك؟ قال: إني أتذكر قوله تعالى: كُلَّمَا دَخَلَتْ أُمَّةٌ لَّعَنَتْ أُخْتَهَا، فأخاف أن أكون من الملعونين. وكان يقول: لو طهرت قلوبنا لما شبعنا من كلام الله. تعلمنا أن خشية الله والبكاء عند ذكره من أعظم الأعمال."
-                },
-                battle: {
-                    title: "فتح بلاد فارس",
-                    date: "خلافة عمر وعثمان رضي الله عنهما",
-                    content: "تم فتح بلاد فارس (العراق وإيران حالياً) على يد المسلمين في عهد الخليفتين عمر وعثمان. كانت الدولة الفارسية من أعظم دول العالم آنذاك، لكنها انهارت أمام المسلمين. وفيها قال المسلمون: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله."
-                },
-                adhkar: [
-                    {
-                        text: "الاستغفار",
-                        reward: "من استغفر في اليوم مئة مرة كانت له عدل عتق رقبة"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام البخاري رحمه الله يقول: إني لأتمنى أن أكون كالشعرة في جنب المسلمين، لا أذكر ولا أُذكر."
-            },
-            {
-                // Day 25
-                verse: {
-                    title: "إكمال الدين",
-                    arabic: "الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي وَرَضِيتُ لَكُمُ الْإِسْلَامَ دِينًا",
-                    translation: "اليوم أكملت لكم دينكم وأتممت عليكم نعمتي ورضيت لكم الإسلام ديناً",
-                    explanation: "هذه الآية تبشر بإكمال الدين، وأن الله قد أتم نعمته على المسلمين، ورضي لهم الإسلام ديناً. في هذه الليالي، نتذكر نعمة الإسلام، ونشكر الله على هدايتنا.",
-                    reference: "سورة المائدة (3)"
-                },
-                dua: {
-                    title: "دعاء الشكر على النعم",
-                    arabic: "اللَّهُمَّ لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ وَعَظِيمِ سُلْطَانِكَ",
-                    explanation: "هذا الدعاء يشكر فيه العبد الله على نعمه، ويؤكد أن الحمد لله وحده، وأنه يستحق الحمد كما يليق بجلاله وعظمته. يُستحب الإكثار منه في رمضان.",
-                    reference: "صحيح مسلم 2739"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "علي بن أبي طالب يقوم الليل",
-                    content: "كان علي بن أبي طالب رضي الله عنه يقوم الليل في رمضان، فيصلي ويدعو ويبكي. وكان يقول: إني لأرجو من الله أن يغفر لي في هذه الليالي ما مضى، وأن يتقبل مني ما بقي. وكان يقول: نوم العلماء خسارة، ونوم الأغنياء خيانة، ونوم الفقراء راحة. تعلمنا أن الوقت أغلى ما نملك، وأن العشر الأواخر لا تُعوض."
-                },
-                battle: {
-                    title: "فتح شمال أفريقيا",
-                    date: "خلافة عثمان وعلي رضي الله عنهما",
-                    content: "تم فتح شمال أفريقيا (المغرب وتونس والجزائر) على يد المسلمين بقيادة عقبة بن نافع وغيره. وفيها أسس عقبة بن نافع مدينة القيروان، ووصل إلى المحيط الأطلسي. وكان عقبة يقول: لو لم يكن بيني وبين Europe بحر لفتحتها. وظلت هذه البلاد دار إسلام قروناً طويلة."
-                },
-                adhkar: [
-                    {
-                        text: "التهليل والتسبيح والتحميد",
-                        reward: "من كبر من الفجر يوم عرفة إلى العصر آخر أيام التشريق غفر له ذنب من قبل"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يختم القرآن في رمضان ستين ختمة، أي ختمتين في اليوم."
-            },
-            {
-                // Day 26
-                verse: {
-                    title: "السعي الأخير",
-                    arabic: "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا",
-                    translation: "فسبح بحمد ربك واستغفره، إنه كان تواباً",
-                    explanation: "هذه الآية تأمر بالتسبيح والاستغفار، وتبشر بأن الله تواب على عباده. في السعي الأخير، نكثر من التسبيح والاستغفار، ونرجو توبة الله علينا.",
-                    reference: "سورة النصر (3)"
-                },
-                dua: {
-                    title: "دعاء طلب القبول",
-                    arabic: "اللَّهُمَّ تَقَبَّلْ صِيَامَنَا وَقِيَامَنَا وَتَهْجُدَنَا وَتَعَبُّدَنَا وَتَخْشُّعَنَا وَتَمَكُّنَنَا وَتَعَبُّدَنَا",
-                    explanation: "هذا الدعاء يطلب فيه العبد قبول أعماله من الله، ويؤكد على أن القبول هو المقصود الأعلى، لا مجرد فعل العبادة. يُستحب الإكثار منه في آخر أيام رمضان.",
-                    reference: "دعاء مستجاب"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "عمر بن الخطاب يجتهد في العبادة",
-                    content: "كان عمر بن الخطاب رضي الله عنه يجتهد في العبادة في العشر الأواخر من رمضان، حتى ينهكه التعب. فكان أصحابه يقولون: يا أمير المؤمنين، ارقأ. فيقول: أرقأ إلى متى؟ إن الموت أقرب إلي من رقأتي. وكان يقول: إني لأرجو أن ألقى الله ولم أظلم أحداً، ولم أخن أحداً، ولم أكذب على أحد. تعلمنا أن الاجتهاد في العبادة هو سبب النجاة."
-                },
-                battle: {
-                    title: "فتح السند",
-                    date: "93 هـ على يد محمد بن القاسم",
-                    content: "كان فتح السند (باكستان حالياً) من أعظم الفتوحات. بعث الحجاج بن يوسف الثقفي محمد بن القاسم الثقفي وهو ابن سبع عشرة سنة. فتح السند كلها في زمن قياسي، ودخل الناس في الإسلام أفواجاً. وكان محمد بن القاسم عادلاً رحيماً، فأحبه الناس وأسرعوا في دخول الإسلام."
-                },
-                adhkar: [
-                    {
-                        text: "الاجتهاد في العبادة",
-                        reward: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأدعو في السجود دعوات لو أدعيت بها على جبل لذاب."
-            },
-            {
-                // Day 27
-                verse: {
-                    title: "ليلة القدر",
-                    arabic: "وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ",
-                    translation: "وما أدراك ما ليلة القدر",
-                    explanation: "هذه الآية تبشر بعظمة ليلة القدر، وأنها خير من ألف شهر. في هذه الليلة، تتنزل الرحمة والبركات، وتُقدر الأرزاق والآجال.",
-                    reference: "سورة القدر (2)"
-                },
-                dua: {
-                    title: "دعاء ليلة القدر",
-                    arabic: "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",
-                    explanation: "هذا هو الدعاء الذي علمته عائشة رضي الله عنها للنبي ﷺ، وهو أفضل دعاء في ليلة القدر. يطلب فيه العبد العفو الذي هو أعظم من المغفرة.",
-                    reference: "سنن الترمذي 3513"
-                },
-                hadith: {
-                    text: "من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه",
-                    reference: "صحيح البخاري 1901"
-                },
-                story: {
-                    title: "الحسن البصري يبكي في ليلة القدر",
-                    content: "كان الحسن البصري رحمه الله إذا دخلت ليلة القدر، بكى حتى تبل لحيته. فقيل له: ما يبكيك؟ قال: إني أتذكر قوله تعالى: وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ، فأخاف أن أكون من المحرومين. وكان يقول: إني لأرجو أن ألقى الله وقد غُفِرَ لي في هذه الليلة. تعلمنا أن ليلة القدر فرصة عظيمة لا تُعوض، وأن المحروم من حُرم خيرها."
-                },
-                battle: {
-                    title: "معركة اليرموك",
-                    date: "15 هـ على يد خالد بن الوليد",
-                    content: "كانت من أعظم معارك التاريخ الإسلامي. كان المسلمون أربعين ألفاً بقيادة خالد بن الوليد، والروم مئتي ألف بقيادة ماهان. استمرت المعركة ستة أيام، وانتصر فيها المسلمون انتصاراً ساحقاً. قال خالد: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. وكانت هذه المعركة فاتحة فتح بلاد الشام."
-                },
-                adhkar: [
-                    {
-                        text: "الاعتكاف في المسجد",
-                        reward: "من اعتكف عشراً من رمضان كانت له أجر حجة وعمرة"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "قراءة سورة الإخلاص والمعوذتين",
-                        reward: "تكفي من كل شيء"
-                    }
-                ],
-                fact: "كان النبي ﷺ إذا دخل العشر الأواخر من رمضان أحيا الليل وأيقظ أهله، وشد المئزر، وجد في العبادة."
-            },
-            {
-                // Day 28
-                verse: {
-                    title: "قرب العيد",
-                    arabic: "وَلِتُكْمِلُوا الْعِدَّةَ وَلِتُكَبِّرُوا اللَّهَ عَلَىٰ مَا هَدَاكُمْ وَلَعَلَّكُمْ تَشْكُرُونَ",
-                    translation: "ولتكملوا العدة ولتكبروا الله على ما هداكم ولعلكم تشكرون",
-                    explanation: "هذه الآية تأمر بإكمال صيام رمضان، والتكبير شكراً لله على هدايته، والشكر على نعمة الإسلام. في هذه الأيام، نستعد للعيد بالتكبير والشكر.",
-                    reference: "سورة البقرة (185)"
-                },
-                dua: {
-                    title: "دعاء التكبير",
-                    arabic: "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، وَلِلَّهِ الْحَمْدُ",
-                    explanation: "هذا التكبير يُستحب في أيام العشر من ذي الحجة ويوم عرفة، ويُستحب أيضاً في آخر أيام رمضان. يؤكد على عظمة الله ووحدانيته، ويشكره على نعمه.",
-                    reference: "صحيح البخاري 969"
-                },
-                hadith: {
-                    text: "الصيام معلق بين الأرض والسماء لا يُرفع إلى الله حتى تُؤدى زكاة الفطر",
-                    reference: "سنن ابن ماجه 1748"
-                },
-                story: {
-                    title: "أبو بكر يوزع زكاة الفطر",
-                    content: "كان أبو بكر الصديق رضي الله عنه يخرج في آخر أيام رمضان فيوزع زكاة الفطر على الفقراء والمساكين. وكان يقول: إني لأرجو أن ألقى الله وقد أديت حق الفقراء في أموال الأغنياء. وكان يقول: إن زكاة الفطر طهرة للصائم من اللغو والرفث، وطعمة للمساكين. تعلمنا أن زكاة الفطر حق واجب على كل مسلم، وأنها طهرة للصائم من الذنوب."
-                },
-                battle: {
-                    title: "فتح مكة",
-                    date: "20 رمضان سنة 8 هـ",
-                    content: "كان فتحاً عظيماً دون قتال. دخل النبي ﷺ مكة بجيش عشرة آلاف مقاتل، وقد نصره الله على قريش بعد أن أخرجته منها. سجد النبي ﷺ شكراً لله، ثم قال: ما لكم أيها القوم؟ فقالوا: خيراً، أنت كريم وابن كريم. فقال: اذهبوا فأنتم الطلقاء. عفا النبي ﷺ عن من أخرجه وآذاه، فأسلم الناس أفواجاً. ودخل النبي ﷺ الكعبة فطهرها من الأصنام."
-                },
-                adhkar: [
-                    {
-                        text: "التكبير في أيام العشر",
-                        reward: "من كبر من الفجر يوم عرفة إلى العصر آخر أيام التشريق غفر له ذنب من قبل"
-                    },
-                    {
-                        text: "إخراج زكاة الفطر",
-                        reward: "طهرة للصائم من اللغو والرفث، وطعمة للمساكين"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    }
-                ],
-                fact: "كان الإمام الشافعي رحمه الله يقول: إذا مر رمضان ولم يغفر للعبد فماذا يرجو بعده؟"
-            },
-            {
-                // Day 29
-                verse: {
-                    title: "ليلة الشك",
-                    arabic: "فَمَنْ شَهِدَ مِنْكُمُ الشَّهْرَ فَلْيَصُمْهُ ۖ وَمَنْ كَانَ مَرِيضًا أَوْ عَلَىٰ سَفَرٍ فَعِدَّةٌ مِنْ أَيَّامٍ أُخَرَ ۗ يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ",
-                    translation: "فمن شهد منكم الشهر فليصمه، ومن كان مريضاً أو على سفر فعدة من أيام أخر، يريد الله بكم اليسر ولا يريد بكم العسر",
-                    explanation: "هذه الآية تبين حكم صيام رمضان، وأن الله يريد بالمسلمين اليسر لا العسر. في ليلة الشك، ننتظر رؤية الهلال، وإن غم علينا فنكمل العدة ثلاثين يوماً.",
-                    reference: "سورة البقرة (185)"
-                },
-                dua: {
-                    title: "دعاء رؤية الهلال",
-                    arabic: "اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْأَمْنِ وَالْإِيمَانِ، وَالسَّلَامَةِ وَالْإِسْلَامِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ وَتَرْضَى، رَبُّنَا وَرَبُّكَ اللَّهُ",
-                    explanation: "هذا الدعاء يُقال عند رؤية الهلال، يطلب فيه العبد من الله أن يجعل الشهر الجديد عليهم بالأمن والإيمان، والسلامة والإسلام، والتوفيق لطاعة الله.",
-                    reference: "سنن الترمذي 3451"
-                },
-                hadith: {
-                    text: "لا تصوموا حتى تروا الهلال، وأفطروا حتى تروه، فإن غُمَّ عليكم فأكملوا العدة ثلاثين",
-                    reference: "صحيح البخاري 1909"
-                },
-                story: {
-                    title: "عمر بن الخطاب يرى الهلال",
-                    content: "كان عمر بن الخطاب رضي الله عنه إذا رأى الهلال، كبر وهلل وسبح، ثم قال: اللهم أهله علينا بالأمن والإيمان، والسلامة والإسلام. وكان يقول: إني لأرجو أن ألقى الله وقد صمت رمضان كله، وقمت ليله كله، وأديت زكاة الفطر. تعلمنا أن رؤية الهلال سنة نبوية، وأن المسلم يجتهد في استقبال الشهر بالدعاء والتكبير."
-                },
-                battle: {
-                    title: "غزوة حنين",
-                    date: "10 شوال سنة 8 هـ",
-                    content: "وقعت بعد فتح مكة مباشرة، وكان المسلمون اثني عشر ألفاً، وكان المشركون من هوازن وغيرهم عشرين ألفاً. افتخر بعض المسلمون بكثرتهم فأنزل الله: يَوْمَ حُنَيْنٍ إِذْ أَعْجَبَتْكُمْ كَثْرَتُكُمْ فَلَمْ تُغْنِ عَنكُمْ شَيْئًا. ثم أنزل الله سكينته على المسلمين فانتصروا انتصاراً عظيماً، وغنموا غنائم كثيرة."
-                },
-                adhkar: [
-                    {
-                        text: "الدعاء عند رؤية الهلال",
-                        reward: "اللهم أهله علينا بالأمن والإيمان"
-                    },
-                    {
-                        text: "التكبير",
-                        reward: "من كبر من الفجر يوم عرفة إلى العصر آخر أيام التشريق غفر له ذنب من قبل"
-                    },
-                    {
-                        text: "إخراج زكاة الفطر",
-                        reward: "طهرة للصائم من اللغو والرفث"
-                    }
-                ],
-                fact: "كان الإمام أحمد بن حنبل رحمه الله يقول: إني لأكره للرجل أن يموت وعليه صيام يوم واحد من رمضان."
-            },
-            {
-                // Day 30
-                verse: {
-                    title: "إكمال الشهر",
-                    arabic: "الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ وَأَتْمَمْتُ عَلَيْكُمْ نِعْمَتِي وَرَضِيتُ لَكُمُ الْإِسْلَامَ دِينًا",
-                    translation: "اليوم أكملت لكم دينكم وأتممت عليكم نعمتي ورضيت لكم الإسلام ديناً",
-                    explanation: "هذه الآية تبشر بإكمال الدين، وأن الله قد أتم نعمته على المسلمين، ورضي لهم الإسلام ديناً. في آخر يوم من رمضان، نشكر الله على تمام النعمة، ونسأله القبول.",
-                    reference: "سورة المائدة (3)"
-                },
-                dua: {
-                    title: "دعاء ختام رمضان",
-                    arabic: "اللَّهُمَّ تَقَبَّلْ مِنَّا الصِّيَامَ وَالْقِيَامَ، وَتَلَاوَةَ الْقُرْآنِ، وَاجْعَلْنَا مِنَ الْعُتَقَاءِ مِنَ النَّارِ، وَأَدْخِلْنَا الْجَنَّةَ بِغَيْرِ حِسَابٍ",
-                    explanation: "هذا الدعاء يُقال في آخر يوم من رمضان، يطلب فيه العبد قبول أعماله، والعتق من النار، والدخول في الجنة بغير حساب. يؤكد على أن المقصود الأعلى هو رضوان الله والفوز بالجنة.",
-                    reference: "دعاء مستجاب"
-                },
-                hadith: {
-                    text: "من صام رمضان ثم أتبعه ستاً من شوال كان كصيام الدهر",
-                    reference: "صحيح مسلم 1164"
-                },
-                story: {
-                    title: "النبي ﷺ يودع رمضان",
-                    content: "كان النبي ﷺ إذا دخل العشر الأواخر من رمضان، أحيا الليل وأيقظ أهله، وشد المئزر، وجد في العبادة. وكان يقول: من قام ليلة القدر إيماناً واحتساباً غُفِرَ له ما تقدم من ذنبه. وفي آخر يوم من رمضان، كان يقول: اللهم أجرنا من النار، وأدخلنا الجنة، واجعلنا من الفائزين. تعلمنا أن وداع رمضان يكون بالدعاء والشكر، والعزم على الاستمرار في الطاعة."
-                },
-                battle: {
-                    title: "فتح العراق وفارس",
-                    date: "خلافة عمر بن الخطاب",
-                    content: "تم فتح العراق وفارس في عهد الخليفة عمر بن الخطاب على يد سعد بن أبي وقاص وغيره. كانت معركة القادسية من أعظم المعارك في التاريخ الإسلامي، حيث هزم المسلمون الفرس رغم قلة عددهم. وفيها قال سعد: إنما نحن قوم أعزنا الله بالإسلام، فإن ابتغينا العزة بغيره أذلنا الله. وظلت هذه البلاد دار إسلام قروناً طويلة."
-                },
-                adhkar: [
-                    {
-                        text: "صيام ست من شوال",
-                        reward: "من صام رمضان ثم أتبعه ستاً من شوال كان كصيام الدهر"
-                    },
-                    {
-                        text: "الدعاء في السجود",
-                        reward: "أقرب ما يكون العبد من ربه وهو ساجد"
-                    },
-                    {
-                        text: "الشكر على نعمة رمضان",
-                        reward: "من شكر الله على نعمة زاده الله منها"
-                    }
-                ],
-                fact: "كان الإمام البخاري رحمه الله يقول: إني لأتمنى أن أكون كالشعرة في جنب المسلمين، لا أذكر ولا أُذكر."
-            }
-        ];
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            showWelcomeModal();
-            initializeDay();
+        // Lightweight background ambient hearts generator
+        function createFloatingHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartSymbols = ['💖', '💕', '💗', '🌸', '✨', '🌺'];
+            const fragment = document.createDocumentFragment();
             
-            // Fix close button
-            document.getElementById('enterBtn').addEventListener('click', closeModal);
-        });
-
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                starsContainer.appendChild(star);
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.fontSize = `${Math.random() * 16 + 12}px`;
+                heart.style.animationDuration = `${Math.random() * 8 + 7}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                fragment.appendChild(heart);
             }
+            container.appendChild(fragment);
         }
 
-        function showWelcomeModal() {
-            const modal = document.getElementById('welcomeModal');
+        // Smooth transition from Hero to Letter section
+        function openEnvelope() {
+            const hero = document.getElementById('hero-section');
+            const letter = document.getElementById('letter-section');
+            
+            hero.classList.remove('scale-100', 'opacity-100');
+            hero.classList.add('scale-95', 'opacity-0');
+
             setTimeout(() => {
-                modal.classList.add('active');
+                hero.classList.add('hidden');
+                letter.classList.remove('hidden');
+                
+                requestAnimationFrame(() => {
+                    letter.classList.remove('scale-95', 'opacity-0');
+                    letter.classList.add('scale-100', 'opacity-100');
+                    triggerLetterParagraphs();
+                });
             }, 500);
         }
 
-        function closeModal() {
-            const modal = document.getElementById('welcomeModal');
-            const modalContent = modal.querySelector('.welcome-modal');
-            
-            modalContent.style.transform = 'scale(0.8)';
-            modalContent.style.opacity = '0';
+        // Staggered CSS fade-in for letter paragraphs (eliminates text jitter/glitches)
+        function triggerLetterParagraphs() {
+            const p1 = document.getElementById('para-1');
+            const p2 = document.getElementById('para-2');
+            const p3 = document.getElementById('para-3');
+            const questionArea = document.getElementById('question-area');
+
+            setTimeout(() => p1.classList.add('visible'), 200);
+            setTimeout(() => p2.classList.add('visible'), 1200);
+            setTimeout(() => p3.classList.add('visible'), 2200);
             
             setTimeout(() => {
-                modal.classList.remove('active');
-                document.querySelectorAll('.card').forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                    }, index * 100);
+                questionArea.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                questionArea.classList.add('opacity-100', 'translate-y-0');
+            }, 3200);
+        }
+
+        // Optimized smooth runaway No button with zero layout shift
+        function dodgeButton() {
+            const noBtn = document.getElementById('no-btn');
+            const yesBtn = document.getElementById('yes-btn');
+            
+            dodgeCount++;
+
+            // Grow Yes button smoothly
+            yesButtonScale += 0.2;
+            yesBtn.style.transform = `scale(${yesButtonScale})`;
+
+            // Generate restrained random offset bounds to prevent screen overflow
+            const randomX = (Math.random() - 0.5) * 220;
+            const randomY = (Math.random() - 0.5) * 140;
+
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            // Playful dynamic text updates
+            const playfulTexts = [
+                "Are you sure? 🥺", 
+                "Think again! 💭", 
+                "Really sure? 🌹", 
+                "Wrong button! 😜", 
+                "Nice try! 💖"
+            ];
+            noBtn.innerText = playfulTexts[Math.min(dodgeCount - 1, playfulTexts.length - 1)];
+        }
+
+        // Transition to celebration success screen
+        function acceptLove() {
+            const letter = document.getElementById('letter-section');
+            const success = document.getElementById('success-section');
+
+            letter.classList.remove('scale-100', 'opacity-100');
+            letter.classList.add('scale-90', 'opacity-0');
+
+            setTimeout(() => {
+                letter.classList.add('hidden');
+                success.classList.remove('hidden');
+
+                requestAnimationFrame(() => {
+                    success.classList.remove('scale-90', 'opacity-0');
+                    success.classList.add('scale-100', 'opacity-100');
+                    launchConfetti();
                 });
-            }, 300);
+            }, 500);
         }
 
-        function getActualRamadanDay() {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            RAMADAN_START.setHours(0, 0, 0, 0);
-            
-            const diffTime = today - RAMADAN_START;
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-            
-            if (diffDays < 1) return 1;
-            if (diffDays > 30) return 30;
-            return diffDays;
-        }
+        // High performance optimized heart confetti explosion
+        function launchConfetti() {
+            const colors = ['#f43f5e', '#ec4899', '#f472b6', '#fef08a', '#ffffff'];
+            const fragment = document.createDocumentFragment();
+            const total = 60;
 
-        function initializeDay() {
-            const actualDay = getActualRamadanDay();
-            currentViewedDay = actualDay;
-            updateContent(currentViewedDay);
-        }
-
-        function updateContent(day) {
-            const content = ramadanContent[day - 1];
-            
-            document.getElementById('displayDay').textContent = day;
-            document.getElementById('ramadanDay').textContent = day;
-            
-            const actualDay = getActualRamadanDay();
-            const currentBadge = document.getElementById('currentBadge');
-            const backTodayBtn = document.getElementById('backTodayBtn');
-            
-            if (day === actualDay) {
-                currentBadge.style.display = 'inline-block';
-                backTodayBtn.classList.remove('visible');
-            } else {
-                currentBadge.style.display = 'none';
-                backTodayBtn.classList.add('visible');
-            }
-            
-            document.getElementById('prevBtn').disabled = day <= 1;
-            document.getElementById('nextBtn').disabled = day >= 30 || day >= getActualRamadanDay();
-            
-            const ramadanDate = new Date(RAMADAN_START);
-            ramadanDate.setDate(ramadanDate.getDate() + day - 1);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('currentDate').textContent = ramadanDate.toLocaleDateString('ar-SA', options);
-            
-            // Update Verse
-            document.getElementById('verseTitle').textContent = content.verse.title;
-            document.getElementById('verseArabic').textContent = content.verse.arabic;
-            document.getElementById('verseTranslation').textContent = content.verse.translation;
-            document.getElementById('verseExplanation').textContent = content.verse.explanation;
-            document.getElementById('verseReference').textContent = content.verse.reference;
-            
-            // Update Dua - removed transliteration
-            document.getElementById('duaTitle').textContent = content.dua.title;
-            document.getElementById('duaArabic').textContent = content.dua.arabic;
-            document.getElementById('duaExplanation').textContent = content.dua.explanation;
-            document.getElementById('duaReference').textContent = content.dua.reference;
-            
-            // Update Hadith
-            document.getElementById('hadithText').textContent = content.hadith.text;
-            document.getElementById('hadithReference').textContent = content.hadith.reference;
-            
-            // Update Story
-            document.getElementById('storyTitle').textContent = content.story.title;
-            document.getElementById('storyContent').innerHTML = `<strong>${content.story.title}</strong><br>${content.story.content}`;
-            
-            // Update Battle
-            document.getElementById('battleTitle').textContent = content.battle.title;
-            document.getElementById('battleContent').innerHTML = `
-                <div class="battle-name">${content.battle.title}</div>
-                <div class="battle-date">${content.battle.date}</div>
-                <div>${content.battle.content}</div>
-            `;
-            
-            // Update Adhkar
-            const adhkarHtml = content.adhkar.map(item => `
-                <div class="adhkar-item">
-                    <div>${item.text}</div>
-                    <div class="reward">${item.reward}</div>
-                </div>
-            `).join('');
-            document.getElementById('adhkarContent').innerHTML = adhkarHtml;
-            
-            // Update Fact
-            document.getElementById('factContent').textContent = content.fact;
-            
-            // Re-trigger card animations
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animation = 'none';
-                card.offsetHeight;
-                card.style.animation = `fadeInUp 0.8s ease ${index * 0.1}s backwards`;
-            });
-        }
-
-        function previousDay() {
-            if (currentViewedDay > 1) {
-                currentViewedDay--;
-                updateContent(currentViewedDay);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function nextDay() {
-            const actualDay = getActualRamadanDay();
-            if (currentViewedDay < 30 && currentViewedDay < actualDay) {
-                currentViewedDay++;
-                updateContent(currentViewedDay);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function goToToday() {
-            currentViewedDay = getActualRamadanDay();
-            updateContent(currentViewedDay);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function createParticles(e) {
-            const card = e.currentTarget;
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const symbols = ['✨', '🌟', '💫', '⭐', '🤲', '📿'];
-            
-            for (let i = 0; i < 6; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.setProperty('--x', (Math.random() - 0.5) * 100 + 'px');
-                particle.style.setProperty('--y', (Math.random() - 0.5) * 100 + 'px');
-                card.appendChild(particle);
+            for (let i = 0; i < total; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
                 
-                setTimeout(() => particle.remove(), 1000);
+                const isHeart = Math.random() > 0.3;
+                if (isHeart) {
+                    confetti.innerText = '💖';
+                    confetti.style.fontSize = `${Math.random() * 16 + 12}px`;
+                } else {
+                    confetti.style.width = `${Math.random() * 8 + 6}px`;
+                    confetti.style.height = `${Math.random() * 8 + 6}px`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                }
+
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 1.5 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.4}s`;
+
+                fragment.appendChild(confetti);
             }
+
+            document.body.appendChild(fragment);
+
+            // Clean up DOM elements after animation completes
+            setTimeout(() => {
+                document.querySelectorAll('.confetti').forEach(el => el.remove());
+            }, 4000);
         }
 
-        document.getElementById('welcomeModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        function restartExperience() {
+            location.reload();
+        }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                nextDay();
-            } else if (e.key === 'ArrowRight') {
-                previousDay();
-            }
-        });
+        // Initialize ambient floating hearts on load
+        window.onload = function() {
+            createFloatingHearts();
+        };
     </script>
 </body>
 </html>
